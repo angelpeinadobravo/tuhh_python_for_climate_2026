@@ -1,0 +1,28 @@
+name: base_gitpage
+
+channels:
+    - conda-forge
+dependencies:
+    - python>=3.10
+    - aiohttp
+    - cmocean
+    - healpy
+    - ipykernel
+    - jupyter
+    - jupyterlab
+    - libnetcdf>=4.9.2
+    - matplotlib
+    - netcdf4
+    - numpy
+    - pandas
+    - pre-commit
+    - pytest
+    - requests
+    - scipy
+    - seaborn
+    - sphinx
+    - sphinx-copybutton
+    - sphinxcontrib-bibtex
+    - xarray
+    - zarr
+    - pip

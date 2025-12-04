@@ -1,0 +1,7 @@
+pytest
+sphinx
+furo
+sphinx_copybutton
+sphinxcontrib-bibtex
+pre-commit
+numpy
