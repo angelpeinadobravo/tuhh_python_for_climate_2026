@@ -1,0 +1,70 @@
+workflow:
+  # these rules ensure that whenever there's a merge request, a "merge request pipeline" is run,
+  # but otherwise a classical branch-pipeline is run. This enables the use of merge-request specific
+  # environment variables within CI.
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS'
+      when: never
+    - if: '$CI_COMMIT_BRANCH'
+
+stages:
+  - test
+  - build
+
+before_script:
+  - python --version ; python -m pip --version  # For debugging
+  - python -m pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+  - python -m pip install -r requirements.txt # ensure sphinx requirements via requirements.txt
+  - pre-commit install
+
+run_pre_commit_hooks:
+  stage: test
+  tags:
+    - sphinx, dkrz
+  variables:
+    PRE_COMMIT_HOME: ${CI_PROJECT_DIR}/.cache/pre-commit
+  cache:
+    paths:
+      - ${PRE_COMMIT_HOME}
+  script:
+    - pre-commit run --all-files
+
+test:
+  stage: build
+  script:
+    - pytest ./tests
+  tags:
+    - sphinx, dkrz
+
+.build: &build
+  stage: build
+  tags:
+    - sphinx, dkrz
+  script:
+    - cd docs && make html
+    # move to public folder for deployment on GitLab
+    - mkdir -p ../public
+    - mv build/html/* ../public/
+  artifacts:
+    paths:
+      - public
+    expire_in: 20min
+
+preview:
+  <<: *build
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    url: https://$CI_PROJECT_NAMESPACE.$CI_PAGES_DOMAIN/-/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/public/index.html
+  rules:
+    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+
+pages:
+  <<: *build
+  environment:
+    name: production
+    url: https://$CI_PROJECT_NAMESPACE.$CI_PAGES_DOMAIN/$CI_PROJECT_NAME
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
