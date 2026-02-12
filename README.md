@@ -2,12 +2,12 @@
 
 This repository serve as a template for puzzle project in the MPI-M.
 
-Please replace the link to gitpage, XXXX, YYYY, and base_gitpage acoordingly.
+Please replace the link to gitpage and some variables as: m300901 and base_gitpage.
 
 ## Install
 To (locally) reproduce this project simply clone the repository.
 ```
-git clone https://gitlab.dkrz.de/XXXX/YYYY.git
+git clone https://gitlab.dkrz.de/m300901/base_gitpage.git
 ```
 
 You will need to create an environment with the necessary packages as listed in the environment.yml
