@@ -2,6 +2,7 @@ workflow:
   # these rules ensure that whenever there's a merge request, a "merge request pipeline" is run,
   # but otherwise a classical branch-pipeline is run. This enables the use of merge-request specific
   # environment variables within CI.
+  
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS'
