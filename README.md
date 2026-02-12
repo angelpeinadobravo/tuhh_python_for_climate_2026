@@ -1,6 +1,6 @@
 # base_gitpage
 
-This repository serve as a template for puzzle project in the MPI-M. It support python and C++.
+This repository serve as a template for puzzle project in the MPI-M.
 
 Please replace the link to gitpage, XXXX, YYYY, and base_gitpage acoordingly.
 
@@ -14,7 +14,7 @@ You will need to create an environment with the necessary packages as listed in 
 e.g. using a conda environment:
 ```
   $ conda env create -f environment.yml
-  $ conda activate remaphealpixnative
+  $ conda activate base_gitpage
 ```
 
 In Levante, please follow the documentation: [Python Environments](<https://docs.dkrz.de/blog/2021/conda_path.html>). We recommend creating a directory to collect your environments and make the environment visible for jupyterhub:
