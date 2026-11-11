@@ -35,6 +35,9 @@ Classes
    * - 06
      - `Working with zoom levels <slides/deck.html?md=class06_zoom_levels.md>`_
      - :ref:`class_06`
+   * - 07
+     - `Machine learning for climate data <slides/deck.html?md=class07_machine_learning.md>`_
+     - :ref:`class_07`
 
 The other :ref:`classes <classes>` get their deck together with their material.
 

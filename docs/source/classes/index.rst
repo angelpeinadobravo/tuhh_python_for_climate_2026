@@ -25,7 +25,7 @@ exercise, and from class 02 on a page where you add your plots and analysis.
    * - 06
      - :doc:`Working with zoom levels <06_zoom_levels/index>`
    * - 07
-     - :doc:`Working with reanalysis <07_reanalysis/index>`
+     - :doc:`Machine learning for climate data <07_machine_learning/index>`
 
 Material that goes beyond the classes is in :ref:`extras`.
 
@@ -38,4 +38,4 @@ Material that goes beyond the classes is in :ref:`extras`.
    04_comparing_datasets/index
    05_healpix/index
    06_zoom_levels/index
-   07_reanalysis/index
+   07_machine_learning/index
