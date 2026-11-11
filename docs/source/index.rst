@@ -20,7 +20,7 @@ How does a class work?
 #. Follow the class with its :doc:`slides <slides>`.
 #. Start the workshop container (:doc:`getting started <contribute/intro/getstart>`) and open the notebook of the class in JupyterLab.
 #. Complete the exercises at the end of the notebook.
-#. Write down your lessons learned on the page of the class, save it as PDF and send it to the tutor (:doc:`how to <contribute/intro/contribsci>`).
+#. Change the example page of the class into yours, save it as PDF and send it to the tutor (:doc:`how to <contribute/intro/contribsci>`).
 
 More information
 ----------------
@@ -28,8 +28,9 @@ More information
 .. toctree::
    :maxdepth: 1
 
-   lessons/index
+   classes/index
    slides
+   extras/index
    references
    contribute/index
 
@@ -37,5 +38,4 @@ Indices and tables
 ------------------
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`

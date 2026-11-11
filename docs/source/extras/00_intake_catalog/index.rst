@@ -1,10 +1,10 @@
-.. _lesson_00:
+.. _extra_00:
 
-00 · Accessing climate data
+Extra 00 · Accessing climate data
 ================================================================================
 
-Notebook: `examples/00_intake_catalog.ipynb <https://github.com/angelpeinadobravo/tuhh_python_for_climate_2026/blob/main/examples/00_intake_catalog.ipynb>`_
-· Slides: `00 · Accessing climate data <../../slides/deck.html?md=00_intake_catalog.md>`_
+Notebook: `examples/extra_00_intake_catalog.ipynb <https://github.com/angelpeinadobravo/tuhh_python_for_climate_2026/blob/main/examples/extra_00_intake_catalog.ipynb>`_
+· Slides: `Extra 00 · Accessing climate data <../../slides/deck.html?md=extra_00_intake_catalog.md>`_
 
 What you learn
 --------------
@@ -29,7 +29,8 @@ Exercises
 Lessons learned
 ---------------
 
-Add your file to ``docs/source/lessons/00_intake_catalog/learned/`` (:ref:`how to <contribsci>`).
+In ``docs/source/extras/00_intake_catalog/learned/``, copy ``00_key_points.rst`` to ``<lastname>_<firstname>.rst`` and
+write yours (:ref:`how to write a page <contribsci>`).
 
 .. toctree::
    :glob:

@@ -3,13 +3,13 @@
 Contribute
 ================================================================================
 
-This webpage grows with every class: each student adds what they learned to the page of the lesson.
+This webpage grows with every class: each student adds their plots and analysis to the page of the class.
 
 What can you do?
 ----------------
 
 Most likely you want to :doc:`get started <intro/getstart>` with the workshop container first.
-After a class, :doc:`add your lessons learned <intro/contribsci>`.
+After a class, :doc:`write your page <intro/contribsci>`.
 
 Contents
 --------
