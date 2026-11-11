@@ -4,16 +4,25 @@ Our Docs
 ========
 
 We use Sphinx with the `Shibuya <https://shibuya.lepture.com>`_ theme to build this webpage from
-reStructuredText (.rst) files in ``docs/source``. Build the .html files and serve them, e.g.
+reStructuredText (.rst) files in ``docs/source``. The webpage is not online: it runs on your laptop.
+
+In the workshop container it is already running on http://localhost:8000 and rebuilt every time you save a
+file (`sphinx-autobuild <https://github.com/sphinx-doc/sphinx-autobuild>`_). Without the container, build and
+serve it yourself:
 
 .. code-block:: console
 
   $ cd docs && make html
   $ python -m http.server 8000 -d build/html
 
-and open http://localhost:8000. This works the same in the workshop container (port 8000 is forwarded)
-and on your computer. Serve the files instead of opening ``index.html`` directly: the slides load their
-Markdown over HTTP.
+Serve the files instead of opening ``index.html`` directly: the slides load their Markdown over HTTP.
+
+Save a page as PDF
+------------------
+
+Print the page in the browser (``Ctrl+P`` or ``Cmd+P``) and choose **Save as PDF**. The printout has only the
+page content, in the light colours, also when the webpage is in dark mode. Slides print the same way after
+adding ``&print-pdf`` to their address, e.g. ``slides/deck.html?md=00_intake_catalog.md&print-pdf``.
 
 Plots in light and dark mode
 ----------------------------
@@ -57,8 +66,6 @@ If the port is in use, pick another number above 1024.
 
 Things to Note
 --------------
-- After a pull request is merged into main, GitHub Actions rebuilds the webpage; it can take a few minutes to update.
-
 - If you build the docs but are getting strange results, try removing the cached .html files and then re-building, e.g.
 
   .. code-block:: console

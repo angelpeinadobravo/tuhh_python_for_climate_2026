@@ -1,0 +1,26 @@
+# Checks every push and pull request. The webpage is not published online:
+# students build and view it locally in the workshop container.
+name: Checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      # no-commit-to-branch would fail every run on main
+      - run: SKIP=no-commit-to-branch pre-commit run --all-files
+      - run: pytest ./tests
+      - run: cd docs && make html SPHINXBUILD="python -m sphinx" SPHINXOPTS="-W --keep-going"

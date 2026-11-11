@@ -257,3 +257,26 @@ html.dark img.only-light { display: none; }
 /* right column */
 .localtoc a { color: var(--toc-link); }
 .localtoc a:hover { color: var(--sy-c-link); }
+
+/* ---- print / "Save as PDF": only the page content, always light -------- */
+@media print {
+  .sy-head, .sy-rside, .sy-breadcrumbs, .sy-foot, .headerlink { display: none !important; }
+  body { background: #ffffff !important; }
+  /* dark mode prints light text on white paper otherwise */
+  html.dark {
+    --sy-c-text: #2f2b36;
+    --sy-c-heading: #2b2733;
+    --sy-c-bold: #2b2733;
+    --sy-c-light: #6b6574;
+    --sy-c-background: #ffffff;
+    --sy-c-surface: #f6f1ea;
+    --sy-c-link: #4a6c9f;
+    --yue-c-link-1: #4a6c9f;
+    --side-line: #eee6da;
+    --fig-bg: #ffffff;
+    --caption-number: #5a76a8;
+  }
+  html.dark img.only-dark { display: none; }
+  html.dark img.only-light { display: inline; }
+  .yue figure, .yue pre, .yue .admonition { break-inside: avoid; }
+}
