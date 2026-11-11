@@ -1,0 +1,259 @@
+/* Option 3 — "Pastel Modern": Shibuya layout with the pastel look of option 1,
+   in a light and a dark version (switch in the top bar).
+   Titles: Fraunces. Text: Hanken Grotesk (a free Helvetica-style grotesk).
+   Code: Geist Mono. All fonts are self-hosted (SIL OFL, licences next to them).
+
+   Plots: an image "name.png" is shown in light mode and "name_dark.png"
+   (if it exists next to it) in dark mode. See dark_images() in conf.py. */
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("fonts/fraunces-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Hanken Grotesk";
+  src: url("fonts/hanken-grotesk-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Hanken Grotesk";
+  src: url("fonts/hanken-grotesk-latin-wght-italic.woff2") format("woff2");
+  font-weight: 100 900; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono";
+  src: url("fonts/geist-mono-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 900; font-style: normal; font-display: swap;
+}
+
+:root, html.light, html.dark {
+  --sy-f-heading: "Fraunces", Georgia, serif;
+  --sy-f-text: "Hanken Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --sy-f-mono: "Geist Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+
+/* ---- light palette ----------------------------------------------------- */
+html.light {
+  /* layout colours used below */
+  --side-bg: #faf6f0;           /* cream sidebar and footer */
+  --side-line: #eee6da;
+  --head-bg: rgba(255, 255, 255, 0.94);
+  --side-link: #4f5f78;
+  --side-link-top: #4a6c9f;
+  --side-hover: #efe8dd;
+  --side-tree-line: #e6ddcf;
+  --pill-bg: #e9eff9;
+  --pill-text: #3c5a8a;
+  --toc-link: #5f5a68;
+  --fig-bg: #ffffff;
+  --caption-number: #5a76a8;
+  --title-bar: linear-gradient(90deg, #b8cbe8, #cfe5d8, #f3d4c1);
+
+  /* theme colours */
+  --sy-c-text: #2f2b36;
+  --sy-c-heading: #2b2733;
+  --sy-c-bold: #2b2733;
+  --sy-c-light: #6b6574;
+  --sy-c-background: #ffffff;
+  --sy-c-surface: #f6f1ea;
+  --sy-c-border: var(--side-line);
+  --sy-c-divider: var(--side-line);
+  --sy-c-link: #4a6c9f;
+  --sy-c-link-hover: #2f4f80;
+  --yue-c-link-1: #4a6c9f;
+  --yue-c-link-2: #2f4f80;
+  --yue-c-link-border: #c9d6ea;
+  --sy-c-foot-background: var(--side-bg);
+  --sy-c-foot-text: #6b6574;
+  --sy-c-foot-divider: var(--side-line);
+
+  /* dusty pastel blue replaces the theme's accent colour */
+  --accent-1: #fbfcfe;  --accent-a1: #fbfcfe;
+  --accent-2: #f5f8fc;  --accent-a2: #f5f8fc;
+  --accent-3: #e9eff9;  --accent-a3: #e9eff9;
+  --accent-4: #dde6f4;  --accent-a4: #dde6f4;
+  --accent-5: #cfdcef;  --accent-a5: #cfdcef;
+  --accent-6: #bfcfe8;  --accent-a6: #bfcfe8;
+  --accent-7: #a9bede;  --accent-a7: #a9bede;
+  --accent-8: #8ea8d0;  --accent-a8: #8ea8d0;
+  --accent-9: #5a76a8;  --accent-a9: #5a76a8;
+  --accent-10: #4f6a9a; --accent-a10: #4a6c9f;
+  --accent-11: #4a6c9f; --accent-a11: #4a6c9f;
+  --accent-12: #2a3d5e; --accent-a12: #2a3d5e;
+  --accent-contrast: #ffffff;
+  --color-surface-accent: #f5f8fc;
+
+  /* pastel boxes: 1 = background, 2 = title bar, 3 = marker, 4 = title text */
+  --note-1: #f6f9fd;  --note-2: #e8f0fa;  --note-3: #9db6dc;  --note-4: #3c5a8a;
+  --seealso-1: #f6f9fd; --seealso-2: #e8f0fa; --seealso-3: #9db6dc; --seealso-4: #3c5a8a;
+  --tip-1: #f4faf6;   --tip-2: #e3f2e9;   --tip-3: #8fc4a6;   --tip-4: #2f6b4a;
+  --hint-1: #f4faf6;  --hint-2: #e3f2e9;  --hint-3: #8fc4a6;  --hint-4: #2f6b4a;
+  --important-1: #f8f5fc; --important-2: #ece5f6; --important-3: #b5a2d6; --important-4: #5a4683;
+  --warning-1: #fef8f3; --warning-2: #fcebdc; --warning-3: #e8b48c; --warning-4: #8a4f22;
+  --caution-1: #fef8f3; --caution-2: #fcebdc; --caution-3: #e8b48c; --caution-4: #8a4f22;
+  --attention-1: #fef8f3; --attention-2: #fcebdc; --attention-3: #e8b48c; --attention-4: #8a4f22;
+  --danger-1: #fdf5f5; --danger-2: #f8e1e1; --danger-3: #e3a3a3; --danger-4: #8a3434;
+  --error-1: #fdf5f5;  --error-2: #f8e1e1;  --error-3: #e3a3a3;  --error-4: #8a3434;
+}
+
+/* ---- dark palette: deep blue-grey with softened pastels ----------------- */
+html.dark {
+  --side-bg: #21252d;
+  --side-line: #2e333d;
+  --head-bg: rgba(27, 30, 37, 0.94);
+  --side-link: #b4bfd2;
+  --side-link-top: #9fbbe6;
+  --side-hover: #2a2f39;
+  --side-tree-line: #363c48;
+  --pill-bg: #2a3650;
+  --pill-text: #d3e0f5;
+  --toc-link: #b3aebd;
+  --fig-bg: #1b1e25;
+  --caption-number: #9fbbe6;
+  --title-bar: linear-gradient(90deg, #6f86b0, #6f9c86, #b88d74);
+
+  --sy-c-text: #e2dfe8;
+  --sy-c-heading: #f2eff6;
+  --sy-c-bold: #f2eff6;
+  --sy-c-light: #a7a2b2;
+  --sy-c-background: #1b1e25;
+  --sy-c-surface: #262a33;
+  --sy-c-border: var(--side-line);
+  --sy-c-divider: var(--side-line);
+  --sy-c-link: #9fbbe6;
+  --sy-c-link-hover: #c6d7f2;
+  --yue-c-link-1: #9fbbe6;
+  --yue-c-link-2: #c6d7f2;
+  --yue-c-link-border: #4a5d7d;
+  --sy-c-foot-background: var(--side-bg);
+  --sy-c-foot-text: #a7a2b2;
+  --sy-c-foot-divider: var(--side-line);
+
+  --accent-1: #161a22;  --accent-a1: #161a22;
+  --accent-2: #1b212c;  --accent-a2: #1b212c;
+  --accent-3: #22304a;  --accent-a3: #22304a;
+  --accent-4: #273857;  --accent-a4: #273857;
+  --accent-5: #2d4063;  --accent-a5: #2d4063;
+  --accent-6: #354a70;  --accent-a6: #354a70;
+  --accent-7: #405885;  --accent-a7: #405885;
+  --accent-8: #4d6a9f;  --accent-a8: #4d6a9f;
+  --accent-9: #7f9ccd;  --accent-a9: #7f9ccd;
+  --accent-10: #8eaad6; --accent-a10: #9fbbe6;
+  --accent-11: #9fbbe6; --accent-a11: #9fbbe6;
+  --accent-12: #d6e2f5; --accent-a12: #d6e2f5;
+  --accent-contrast: #0f1420;
+  --color-surface-accent: #1b212c;
+
+  --note-1: #1f2633;  --note-2: #263247;  --note-3: #6f8fc0;  --note-4: #b9cdee;
+  --seealso-1: #1f2633; --seealso-2: #263247; --seealso-3: #6f8fc0; --seealso-4: #b9cdee;
+  --tip-1: #1d2924;   --tip-2: #253a2f;   --tip-3: #6fae8c;   --tip-4: #a9dcc0;
+  --hint-1: #1d2924;  --hint-2: #253a2f;  --hint-3: #6fae8c;  --hint-4: #a9dcc0;
+  --important-1: #251f2f; --important-2: #322841; --important-3: #9a85c4; --important-4: #d6c8f0;
+  --warning-1: #2a231d; --warning-2: #3d2f22; --warning-3: #c99366; --warning-4: #f0c9a6;
+  --caution-1: #2a231d; --caution-2: #3d2f22; --caution-3: #c99366; --caution-4: #f0c9a6;
+  --attention-1: #2a231d; --attention-2: #3d2f22; --attention-3: #c99366; --attention-4: #f0c9a6;
+  --danger-1: #2b1f21; --danger-2: #3d2628; --danger-3: #c27a7a; --danger-4: #f0b7b7;
+  --error-1: #2b1f21;  --error-2: #3d2628;  --error-3: #c27a7a;  --error-4: #f0b7b7;
+}
+
+/* ---- top bar ----------------------------------------------------------- */
+.sy-head {
+  border-bottom: 1px solid var(--side-line);
+  background-color: var(--head-bg);
+}
+.sy-head-brand, .sy-head-brand strong {
+  font-family: var(--sy-f-heading);
+  font-weight: 600;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+}
+.sy-head-links a { font-weight: 500; }
+.sy-head-links a:hover { color: var(--sy-c-link); }
+
+/* ---- left sidebar: cream column (dark: slightly lighter than the page) --- */
+@media (min-width: 768px) {
+  .sy-lside {
+    position: relative;
+    background: var(--side-bg);
+    border-right: 1px solid var(--side-line);
+  }
+  /* on screens wider than the page, fill the strip left of the sidebar */
+  body {
+    background: linear-gradient(90deg, var(--side-bg) max(0px, calc(50% - 45rem)), var(--sy-c-background) 0);
+  }
+}
+.globaltoc a { color: var(--side-link); }
+.globaltoc > ul > li > a { color: var(--side-link-top); font-weight: 500; }
+.globaltoc a:hover { color: var(--sy-c-link-hover); }
+.globaltoc li > button:hover { background-color: var(--side-hover); }
+.globaltoc li.toctree-l1 > ul { border-left-color: var(--side-tree-line); }
+/* current page as a soft pill */
+.globaltoc > ul a.current {
+  display: block;
+  margin-left: -0.5rem;
+  padding: 0.15rem 0.5rem;
+  background: var(--pill-bg);
+  border-radius: 6px;
+  color: var(--pill-text);
+  font-weight: 600;
+}
+.globaltoc li.toctree-l2.current { border-color: transparent; }
+
+/* ---- reading area ------------------------------------------------------ */
+.yue { font-size: 1.0625rem; line-height: 1.75; }
+.yue section > p,
+.yue section > ul > li,
+.yue section > ol > li { max-width: 72ch; }
+
+.yue h1, .yue h2, .yue h3, .yue h4 {
+  font-family: var(--sy-f-heading);
+  font-weight: 560;
+  letter-spacing: -0.01em;
+}
+.yue h1 { font-weight: 600; }
+/* soft pastel bar under page titles */
+.yue > section > h1::after {
+  content: "";
+  display: block;
+  width: 3.5rem;
+  height: 4px;
+  margin-top: 0.6rem;
+  border-radius: 4px;
+  background: var(--title-bar);
+}
+
+/* pastel boxes: rounded, no heavy side border */
+.yue .admonition {
+  border-left: 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.yue .admonition:before { display: none; }
+.yue .admonition p.admonition-title { margin-left: -1rem; padding-left: 2.6rem; }
+/* small icon inside the title bar */
+.yue .admonition:after {
+  left: 1rem;
+  top: 0.62rem;
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-4);
+}
+
+/* figures: plots in a gentle frame */
+.yue figure img {
+  background: var(--fig-bg);
+  border: 1px solid var(--side-line);
+  border-radius: 10px;
+  padding: 6px;
+}
+.yue figcaption { color: var(--sy-c-light); font-size: 0.92em; line-height: 1.5; }
+.yue figcaption .caption-number { color: var(--caption-number); font-weight: 600; }
+
+/* light/dark plot pairs: show the one that matches the mode */
+html.light img.only-dark,
+html.dark img.only-light { display: none; }
+
+/* right column */
+.localtoc a { color: var(--toc-link); }
+.localtoc a:hover { color: var(--sy-c-link); }
