@@ -18,11 +18,15 @@ File Description:
 Helpers shared by the notebooks in examples/ (import with `from utils import ...`).
 """
 
+import pathlib
+
 import healpix as hp
 import matplotlib.pyplot as plt
 import numpy as np
+import requests
 
 EARTH_SURFACE = 510e6  # km2
+DWD_DAILY = "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/historical/"
 
 
 def control_freak(factor=1):
@@ -63,3 +67,38 @@ def get_lon_lat(ds, dim_cell="cell", nest=True):
     lon, lat = hp.pix2ang(nside, np.arange(ds[dim_cell].size), nest=nest, lonlat=True)
     lon = (lon + 180) % 360 - 180
     return lon, lat
+
+
+def download_dwd_daily(station_id, folder="data"):
+    """Download the daily climate data of a DWD station once into `folder`; return the zip file.
+
+    The file name holds the period of the data (e.g. tageswerte_KL_01975_19360101_20251231_hist.zip),
+    which grows every year, so it is looked up in the list of files on the DWD server.
+    The steps are explained in the notebook class02_get_station_data.
+    """
+    station = f"{int(station_id):05d}"  # 1975 -> "01975", as in the file names
+    folder = pathlib.Path(folder)
+
+    # 1. downloaded before? then there is nothing to do
+    found = sorted(folder.glob(f"tageswerte_KL_{station}_*_hist.zip"))
+    if found:
+        return found[-1]
+
+    # 2. the list of files on the server, and the name of the file of this station in it
+    listing = requests.get(DWD_DAILY, timeout=60)
+    listing.raise_for_status()
+    names = [
+        part
+        for part in listing.text.split('"')
+        if part.startswith(f"tageswerte_KL_{station}_") and part.endswith("_hist.zip")
+    ]
+    if not names:
+        raise ValueError(f"No daily data of station {station} on {DWD_DAILY}")
+
+    # 3. download the file and save it in the folder
+    data = requests.get(DWD_DAILY + names[0], timeout=300)
+    data.raise_for_status()
+    folder.mkdir(parents=True, exist_ok=True)
+    path = folder / names[0]
+    path.write_bytes(data.content)
+    return path
