@@ -73,13 +73,8 @@ html_title = "TUHH · Python for Climate Science"
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
 
-# right-hand column: page contents + "Edit this page" (no repo star counter)
-html_sidebars = {"**": ["sidebars/localtoc.html", "sidebars/edit-this-page.html"]}
-html_context = {
-    # "Edit this page" opens the file in the GitHub editor
-    "source_edit_template": GITHUB_URL
-    + "/edit/main/docs/source/{}",
-}
+# right-hand column: page contents only; students edit the pages locally, not on GitHub
+html_sidebars = {"**": ["sidebars/localtoc.html"]}
 
 html_theme_options = {
     "accent_color": "indigo",  # overridden by the pastel blue in custom.css

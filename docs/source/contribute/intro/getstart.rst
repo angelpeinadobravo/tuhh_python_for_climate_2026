@@ -6,31 +6,61 @@ Getting Started
 The workshop container
 ----------------------
 
-The workshop runs in a Docker container that clones this repository and installs every package of
-``requirements.txt``, so you do not need to set up Python yourself. You only need
-`Docker <https://docs.docker.com/get-docker/>`_ and the workshop folder with the ``Dockerfile`` and
-``docker-compose.yml`` that you get from the instructor.
+The workshop runs in a Docker container with every package of ``requirements.txt``, so you do not need to
+set up Python yourself. You need `Docker Desktop <https://docs.docker.com/get-docker/>`_ (Windows, macOS)
+or Docker Engine (Linux), and the workshop zip file from the tutor.
 
-#. To work on your own fork (needed for :doc:`lessons learned <contribsci>`), set in the ``.env`` file of the workshop folder:
+#. Unzip the workshop file and open a terminal in its folder.
+
+#. Copy ``.env.example`` to ``.env`` and choose a password:
 
    .. code-block:: console
 
-      REPO_URL=https://github.com/<your-user>/tuhh_python_for_climate_2026.git
       JUPYTER_PASSWORD=<a password of your choice>
 
-#. Build and start the container:
+   On Linux, also add your user and group id (``id -u`` and ``id -g``) as ``UID=...`` and ``GID=...``,
+   so the files the container writes belong to you.
+
+#. Build and start the container (the first build takes 10–15 minutes):
 
    .. code-block:: console
 
       $ docker compose up --build
 
-#. Open http://localhost:8888 and log in with your ``JUPYTER_PASSWORD``. The repository is in ``/app``;
-   the notebooks of the lessons are in ``/app/examples``.
+#. Open in your browser:
 
-.. warning::
-   The repository lives inside the container. Commit and push your work (JupyterLab → Terminal) before you run
-   ``docker compose down``, otherwise it is lost. Files in ``/app/notebooks`` are the exception: that folder is
-   ``my_notebooks/`` of the workshop folder on your computer.
+   - http://localhost:8888 · **JupyterLab**, log in with your ``JUPYTER_PASSWORD``
+   - http://localhost:8000 · **this webpage** and the slides, rebuilt every time you save a page
+
+Stop the container with ``Ctrl+C`` or ``docker compose down``, start it again with ``docker compose up``.
+
+Where your work lives
+---------------------
+
+Everything you do is saved on your laptop, in the workshop folder, and survives stopping the container:
+
++-------------------------+---------------------+--------------------------------------------------+
+| On your laptop          | In JupyterLab       | Content                                          |
++=========================+=====================+==================================================+
+| ``course/``             | ``/app``            | This repository: lessons, webpage, slides        |
++-------------------------+---------------------+--------------------------------------------------+
+| ``my_notebooks/``       | ``/app/notebooks``  | Your notebooks, homework and data                |
++-------------------------+---------------------+--------------------------------------------------+
+
+The first start downloads the course into ``course/``. Every later start downloads the new lessons of the
+tutor. Files you changed are never overwritten: if a new lesson changes the same file, the update is skipped
+and the container tells you so.
+
+.. tip::
+   Do the exercises in your own copy of the lessons, so updates of the lessons always reach you.
+   In the JupyterLab terminal, copy the whole folder once (the notebooks need ``utils/``, ``Fig/`` and the
+   ``.nc`` files next to them):
+
+   .. code-block:: console
+
+      $ cp -r /app/examples /app/notebooks/lessons
+
+   A lesson that comes later is one more notebook to copy into ``/app/notebooks/lessons``.
 
 Without Docker
 --------------
@@ -48,12 +78,4 @@ Clone the repository and create an environment with Python 3.11, e.g. with ``ven
 In Levante, please follow the documentation: `Python Environments <https://docs.dkrz.de/blog/2021/conda_path.html>`_,
 and make the environment visible for JupyterHub with ``python -m ipykernel install --user --name tuhh_env``.
 
-Install the pre-commit hooks:
-
-.. code-block:: console
-
-  $ pre-commit install
-
-``pre-commit`` formats your code and notebooks when you commit. More information can be found in `their documentation <https://pre-commit.com>`_.
-
-Now everything should work out of the box and you can :doc:`add your lessons learned <contribsci>`. If not, please :ref:`raise an issue in the repository <issue>`.
+Now everything should work out of the box and you can :doc:`add your lessons learned <contribsci>`. If not, please :ref:`contact us <contact>`.
