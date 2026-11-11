@@ -39,28 +39,27 @@ Where your work lives
 
 Everything you do is saved on your laptop, in the workshop folder, and survives stopping the container:
 
-+-------------------------+---------------------+--------------------------------------------------+
-| On your laptop          | In JupyterLab       | Content                                          |
-+=========================+=====================+==================================================+
-| ``course/``             | ``/app``            | This repository: lessons, webpage, slides        |
-+-------------------------+---------------------+--------------------------------------------------+
-| ``my_notebooks/``       | ``/app/notebooks``  | Your notebooks, homework and data                |
-+-------------------------+---------------------+--------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 25 50
 
-The first start downloads the course into ``course/``. Every later start downloads the new lessons of the
-tutor. Files you changed are never overwritten: if a new lesson changes the same file, the update is skipped
-and the container tells you so.
+   * - On your laptop
+     - In JupyterLab
+     - Content
+   * - ``my_notebooks/``
+     - ``notebooks``
+     - Your notebooks: the lessons in ``lessons/``, your homework and data
+   * - ``my_pages/``
+     - ``pages``
+     - Your pages of this webpage, one folder per class
+   * - ``course/``
+     - (not shown)
+     - The course itself: lessons, webpage, slides; you do not need to open it
 
-.. tip::
-   Do the exercises in your own copy of the lessons, so updates of the lessons always reach you.
-   In the JupyterLab terminal, copy the whole folder once (the notebooks need ``utils/``, ``Fig/`` and the
-   ``.nc`` files next to them):
-
-   .. code-block:: console
-
-      $ cp -r /app/examples /app/notebooks/lessons
-
-   The notebook of a class that comes later is one more file to copy into ``/app/notebooks/lessons``.
+Every start downloads the new lessons of the tutor into ``course/``, and copies the notebooks and example
+pages of new classes into your folders. Your own files are never overwritten. If the update of ``course/``
+fails (no internet, or a file in it was changed), the container tells you so; deleting ``course/`` downloads
+it again, without touching your notebooks and pages.
 
 Without Docker
 --------------

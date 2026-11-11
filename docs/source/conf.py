@@ -23,6 +23,7 @@ the skeleton project).
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 # -- Path setup --------------------------------------------------------------
+import os
 import pathlib
 import shutil
 import sys
@@ -58,8 +59,8 @@ bibtex_bibfiles = ["./references.bib"]
 bibtex_reference_style = "label"
 
 templates_path = ["_templates"]
-# students' pages start as copies of these templates (see _create_student_pages)
-exclude_patterns = ["classes/*/students/template_*"]
+# the templates of the students' pages are read from my_pages/ (see _student_pages)
+exclude_patterns = ["classes/*/template/*"]
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
@@ -141,18 +142,28 @@ def _copy_slides(app, exception):
 
 
 # -- Student pages -------------------------------------------------------------
-# Each student edits classes/*/students/my_page.rst on their own laptop. It starts as a copy of
-# template_my_page.rst (same for every template_* file) and git ignores it, so the tutor's updates
-# of the lessons never clash with a student's page.
-def _create_student_pages(app, config):
-    for template in (ROOT / "docs/source/classes").glob("*/students/template_*"):
-        mine = template.with_name(template.name.removeprefix("template_"))
+# Students keep their pages in their own folder, like their notebooks: /app/pages in the workshop
+# container (STUDENT_PAGES), my_pages/ next to this repo's docs otherwise. Each class's template/
+# files are copied there once (never overwritten), and the folder is copied into the sources as
+# my_pages/ for Sphinx to read. So students never edit the course, and its updates never clash.
+STUDENT_PAGES = pathlib.Path(os.environ.get("STUDENT_PAGES", ROOT / "my_pages"))
+
+
+def _student_pages(app, config):
+    source = ROOT / "docs/source"
+    for template in (source / "classes").glob("*/template/*"):
+        mine = STUDENT_PAGES / template.parent.parent.name / template.name
         if not mine.exists():
+            mine.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy(template, mine)
+    shutil.rmtree(source / "my_pages", ignore_errors=True)
+    shutil.copytree(
+        STUDENT_PAGES, source / "my_pages"
+    )  # copy2 keeps mtimes: no needless rebuilds
 
 
 def setup(app):
-    app.connect("config-inited", _create_student_pages)
+    app.connect("config-inited", _student_pages)
     # priority below 500: run before Sphinx collects the images to copy
     app.connect("doctree-read", _add_dark_images, priority=400)
     app.connect("build-finished", _copy_slides)

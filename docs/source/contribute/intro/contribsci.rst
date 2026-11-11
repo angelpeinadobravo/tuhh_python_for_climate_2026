@@ -10,11 +10,11 @@ to the tutor as a PDF.
 Step by step
 ------------
 
-#. :doc:`Start the container <getstart>` and complete the exercises of the class in your copy of the
-   notebooks (``/app/notebooks/lessons``).
+#. :doc:`Start the container <getstart>` and complete the exercises of the class in its notebook
+   (``notebooks/lessons`` in JupyterLab).
 
-#. In the JupyterLab file browser, open ``docs/source/classes/<class>/students/my_page.rst``, e.g.
-   ``docs/source/classes/01_setup/students/my_page.rst`` for class 01.
+#. In the JupyterLab file browser, open ``pages`` → ``<class>`` → ``my_page.rst``, e.g.
+   ``pages/01_setup/my_page.rst`` for class 01.
 
 #. Replace the example title, name and text with yours. A figure of your own goes into the same folder
    (the notebooks of the classes save their plots there, or upload one) and into the page with:
@@ -32,17 +32,18 @@ Step by step
 #. Open your page, print it (``Ctrl+P`` or ``Cmd+P``) and choose **Save as PDF**. The printout has only the
    page content, also in dark mode. Send the PDF to the tutor.
 
-Your page stays in ``course/`` on your laptop, so you can keep improving it after every class. New lessons
-of the tutor never overwrite it.
+Your pages stay in ``my_pages/`` on your laptop, so you can keep improving them after every class. New
+lessons of the tutor never overwrite them.
 
 For the tutor
 -------------
 
-The example page of a class is ``students/template_my_page.rst``. When the webpage is built, every
-``template_<name>`` file of a ``students/`` folder is copied to ``<name>`` if that file does not exist yet
-(``_create_student_pages`` in ``docs/source/conf.py``). git ignores the copies, so you can improve the
-templates at any time without clashing with the students' pages. The class page lists ``students/my_page``
-in a ``toctree``.
+The example page of a class lives in ``docs/source/classes/<class>/template/`` (``my_page.rst`` and its
+pictures). When the webpage is built (``_student_pages`` in ``docs/source/conf.py``), every template file is
+copied to the student's folder, ``STUDENT_PAGES/<class>/`` (``/app/pages`` in the container, ``my_pages/``
+otherwise), if it is not there yet. The student's folder is then copied into the sources as ``my_pages/``,
+which the class page lists in a ``toctree`` as ``/my_pages/<class>/my_page``. git ignores both copies, so
+you can improve the templates at any time.
 
 Improving the lessons
 ---------------------

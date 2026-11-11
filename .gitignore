@@ -2,9 +2,8 @@
 build
 # my_notebooks/ of the workshop container is mounted here
 notebooks
-# students' own pages and pictures, copied from the templates (see docs/source/conf.py)
-docs/source/classes/*/students/*
-!docs/source/classes/*/students/template_*
+# students' own pages and their copy for Sphinx (see docs/source/conf.py)
+my_pages
 bin
 
 ##### Documentation Build Artifacts #####

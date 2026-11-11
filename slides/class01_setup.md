@@ -2,7 +2,7 @@
 
 Python for Climate Science · TUHH
 
-<small>MPI-M · class page: *Classes → 01* · notebook `examples/class01_first_steps.ipynb`</small>
+<small>MPI-M · class page: *Classes → 01* · notebook `notebooks/lessons/class01_first_steps.ipynb`</small>
 
 ---
 
@@ -24,7 +24,7 @@ Note: Everything on these slides is also on the class page, step by step, to rev
 | **Docker** runs a small computer with Python and all packages | the *container* |
 | **JupyterLab**: notebooks, terminal, editor | http://localhost:8888 |
 | **Webpage**: classes, slides, your pages | http://localhost:8000 |
-| **Your work**, saved on your laptop | `course/` and `my_notebooks/` |
+| **Your work**, saved on your laptop | `my_notebooks/` and `my_pages/` |
 
 Same environment for everybody, nothing else to install, nothing lost when you stop.
 
@@ -88,15 +88,14 @@ Next time: `docker compose up` · stop: `Ctrl + C`
 
 ## 4 · Your first notebook
 
-Open a terminal in JupyterLab (*Launcher → Terminal*) and copy the course notebooks into your folder:
+In JupyterLab you see two folders, both yours:
 
-```bash
-cp -r /app/examples /app/notebooks/lessons
-```
+- `notebooks/lessons/` · the notebooks of the classes
+- `pages/` · your pages of the webpage
 
-Then open `notebooks/lessons/class01_first_steps.ipynb` and run it, cell by cell.
+Open `notebooks/lessons/class01_first_steps.ipynb` and run it, cell by cell.
 
-Note: Working in a copy keeps the course files clean, so new lessons always reach the students.
+Note: Every start copies the notebooks of new classes into notebooks/lessons and never overwrites the students' files. The course itself lives in course/ and is not visible in JupyterLab.
 
 ---
 
@@ -123,7 +122,7 @@ All of it, with explanations, is in the notebook.
 Your page is ready: *Example Student · Hamburg*. You only change it.
 
 1. Make your picture: section 7 of the notebook (or **upload** one)
-2. Open `docs/source/classes/01_setup/students/my_page.rst` in JupyterLab
+2. Open `pages/01_setup/my_page.rst` in JupyterLab
 3. Write **your** title, name, region and text, and save
 4. Check it on http://localhost:8000 → *Classes → 01*
 5. Print → **Save as PDF** → send it to the tutor
@@ -165,10 +164,10 @@ Words between two stars are **bold**.
 - Stop: `Ctrl + C`, or `docker compose down`
 - Start: `docker compose up`
 - Your work is on your laptop:
-  - `course/` · the course and **your page**
   - `my_notebooks/` · **your notebooks**
+  - `my_pages/` · **your pages**
 
-Every start downloads the new lessons; your own files are never overwritten.
+Every start downloads the new lessons into `course/`; your own files are never overwritten.
 
 ---
 
