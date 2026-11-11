@@ -32,6 +32,9 @@ Classes
    * - 05
      - `Getting to know HEALPix <slides/deck.html?md=class05_healpix.md>`_
      - :ref:`class_05`
+   * - 06
+     - `Working with zoom levels <slides/deck.html?md=class06_zoom_levels.md>`_
+     - :ref:`class_06`
 
 The other :ref:`classes <classes>` get their deck together with their material.
 
