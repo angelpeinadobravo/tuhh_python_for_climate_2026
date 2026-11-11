@@ -14,8 +14,8 @@ Analyse a reanalysis, ERA5.
 Material available now
 ----------------------
 
-- :ref:`extra_02`: anomalies against a reference period and warming-trend maps of ERA5.
-- :ref:`extra_00`: opening ERA5 from the catalog.
+- :ref:`extra_anomalies`: anomalies against a reference period and warming-trend maps of ERA5.
+- :ref:`class_05` and :ref:`class_06`: opening ERA5 from the catalog, at any zoom level.
 
 Your analysis
 -------------

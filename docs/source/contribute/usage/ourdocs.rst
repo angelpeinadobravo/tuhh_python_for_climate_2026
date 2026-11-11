@@ -22,7 +22,7 @@ Save a page as PDF
 
 Print the page in the browser (``Ctrl+P`` or ``Cmd+P``) and choose **Save as PDF**. The printout has only the
 page content, in the light colours, also when the webpage is in dark mode. Slides print the same way after
-adding ``&print-pdf`` to their address, e.g. ``slides/deck.html?md=extra_00_intake_catalog.md&print-pdf``.
+adding ``&print-pdf`` to their address, e.g. ``slides/deck.html?md=class01_setup.md&print-pdf``.
 
 Plots in light and dark mode
 ----------------------------
@@ -40,17 +40,17 @@ Each class has one `reveal.js <https://revealjs.com>`_ deck in ``slides/``, writ
 
 - ``---`` on its own line starts a new slide, ``--`` a slide below it (vertical),
 - ``Note:`` starts the speaker notes of a slide (press ``S`` while presenting),
-- ``$...$`` is LaTeX math, and ``![](../examples/Fig/name.png)`` a figure of the notebooks.
+- ``$...$`` is LaTeX math, and ``![](img/name.png)`` a picture of ``slides/img/``.
 
-``slides/deck.html`` shows the deck named in the address, e.g. ``slides/deck.html?md=extra_00_intake_catalog.md``.
+``slides/deck.html`` shows the deck named in the address, e.g. ``slides/deck.html?md=class01_setup.md``.
 To present without building the webpage, serve the repository root:
 
 .. code-block:: console
 
   $ python -m http.server 8000
 
-and open http://localhost:8000/slides/deck.html?md=extra_00_intake_catalog.md. A new deck needs a row in
-``docs/source/slides.rst``. Sphinx copies ``slides/`` and ``examples/Fig/`` into the webpage, so the
+and open http://localhost:8000/slides/deck.html?md=class01_setup.md. A new deck needs a row in
+``docs/source/slides.rst``. Sphinx copies ``slides/`` into the webpage, so the
 same links work online.
 
 Viewing Files on Levante Using your Local Browser

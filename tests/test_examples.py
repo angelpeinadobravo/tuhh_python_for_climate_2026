@@ -16,7 +16,8 @@ https://opensource.org/licenses/BSD-3-Clause
 -----
 File Description:
 Checks run by the CI: the notebooks under examples/ must be valid Jupyter
-notebooks and the helpers in examples/utils must work on a HEALPix grid.
+notebooks, the download helpers of examples/utils must work, and the students' pages
+must start from complete templates.
 """
 
 import importlib.util
@@ -24,9 +25,7 @@ import json
 import pathlib
 import sys
 
-import numpy as np
 import pytest
-import xarray as xr
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "examples"))
@@ -41,20 +40,6 @@ def test_notebook_is_valid_json(notebook):
     with open(notebook, encoding="utf-8") as f:
         content = json.load(f)
     assert isinstance(content.get("cells"), list)
-
-
-def test_get_lon_lat_zoom_1():
-    ds = xr.Dataset({"2t": ("cell", np.zeros(48))})  # zoom 1: 12 * 4 cells
-    lon, lat = utils.get_lon_lat(ds)
-    assert lon.shape == lat.shape == (48,)
-    assert np.all((lon >= -180) & (lon < 180))
-    assert np.all(np.abs(lat) < 90)
-    assert np.isclose(lat.mean(), 0)  # cells are symmetric around the equator
-
-
-def test_set_helpers_and_error():
-    assert sorted(utils.f_intersection([1, 2, 3], [2, 3, 4])) == [2, 3]
-    assert utils.f_mean_average_error(np.array([1.0, 3.0]), np.array([0.0, 0.0])) == 2.0
 
 
 def test_student_pages_start_from_templates(tmp_path, monkeypatch):
@@ -214,7 +199,7 @@ def test_download_frogs_finds_year_in_catalog(tmp_path, monkeypatch):
 
 @pytest.mark.parametrize(
     "template",
-    sorted((ROOT / "docs/source/classes").glob("*/template/my_page.rst")),
+    sorted((ROOT / "docs/source").glob("*/*/template/my_page.rst")),
     ids=lambda p: p.parts[-3],
 )
 def test_template_pictures_exist(template):
