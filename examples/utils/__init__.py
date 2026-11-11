@@ -18,11 +18,16 @@ File Description:
 Helpers shared by the notebooks in examples/ (import with `from utils import ...`).
 """
 
+import pathlib
+import re
+
 import healpix as hp
 import matplotlib.pyplot as plt
 import numpy as np
+import requests
 
 EARTH_SURFACE = 510e6  # km2
+DWD_DAILY = "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/historical/"
 
 
 def control_freak(factor=1):
@@ -63,3 +68,29 @@ def get_lon_lat(ds, dim_cell="cell", nest=True):
     lon, lat = hp.pix2ang(nside, np.arange(ds[dim_cell].size), nest=nest, lonlat=True)
     lon = (lon + 180) % 360 - 180
     return lon, lat
+
+
+def download_dwd_daily(station_id, folder="data"):
+    """Download the daily climate data of a DWD station once into `folder`; return the zip file.
+
+    The file name holds the period of the data (e.g. tageswerte_KL_01975_19360101_20251231_hist.zip),
+    which grows every year, so it is looked up in the list of files on the DWD server.
+    """
+    station = f"{int(station_id):05d}"
+    folder = pathlib.Path(folder)
+    found = sorted(folder.glob(f"tageswerte_KL_{station}_*_hist.zip"))
+    if found:
+        return found[-1]
+    listing = requests.get(DWD_DAILY, timeout=60)
+    listing.raise_for_status()
+    match = re.search(
+        rf"tageswerte_KL_{station}_\d{{8}}_\d{{8}}_hist\.zip", listing.text
+    )
+    if match is None:
+        raise ValueError(f"No daily data of station {station} on {DWD_DAILY}")
+    data = requests.get(DWD_DAILY + match.group(), timeout=300)
+    data.raise_for_status()
+    folder.mkdir(parents=True, exist_ok=True)
+    path = folder / match.group()
+    path.write_bytes(data.content)
+    return path

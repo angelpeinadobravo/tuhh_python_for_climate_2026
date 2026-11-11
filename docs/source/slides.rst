@@ -20,6 +20,9 @@ Classes
    * - 01
      - `Setting up the workshop <slides/deck.html?md=class01_setup.md>`_
      - :ref:`class_01`
+   * - 02
+     - `Station data and time series <slides/deck.html?md=class02_station_data.md>`_
+     - :ref:`class_02`
 
 The other :ref:`classes <classes>` get their deck together with their material.
 

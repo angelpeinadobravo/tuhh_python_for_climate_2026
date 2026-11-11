@@ -77,3 +77,33 @@ def test_student_pages_start_from_templates(tmp_path, monkeypatch):
     assert (pages / "01_setup/my_region.png").read_text() == "the student's own picture"
     copy = tmp_path / "docs/source/my_pages/01_setup"
     assert (copy / "my_region.png").read_text() == "the student's own picture"
+
+
+def test_download_dwd_daily_finds_file_and_downloads_once(tmp_path, monkeypatch):
+    calls = []
+
+    class Response:
+        def __init__(self, text="", content=b""):
+            self.text, self.content = text, content
+
+        def raise_for_status(self):
+            pass
+
+    def fake_get(url, timeout):
+        calls.append(url)
+        if url == utils.DWD_DAILY:
+            return Response(
+                text='<a href="tageswerte_KL_01975_19360101_20251231_hist.zip">'
+            )
+        return Response(content=b"zip")
+
+    monkeypatch.setattr(utils.requests, "get", fake_get)
+
+    path = utils.download_dwd_daily(1975, tmp_path / "data")
+    again = utils.download_dwd_daily("01975", tmp_path / "data")
+
+    assert path.name == "tageswerte_KL_01975_19360101_20251231_hist.zip"
+    assert path.read_bytes() == b"zip" and again == path
+    assert len(calls) == 2  # listing + file, nothing the second time
+    with pytest.raises(ValueError):
+        utils.download_dwd_daily(433, tmp_path / "data")

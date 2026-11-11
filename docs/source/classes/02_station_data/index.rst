@@ -3,25 +3,115 @@
 02 · Station data and time series
 ================================================================================
 
-.. note::
-   The material of this class is in preparation.
+Slides: `02 · Station data and time series <../../slides/deck.html?md=class02_station_data.md>`_
+· Notebook: ``notebooks/lessons/class02_station_data.ipynb``
 
-Goal
-----
+In this class you download the measurements of a weather station of the German Weather Service (DWD),
+read them with pandas, and plot how temperature and precipitation change over the years.
 
-Read station data and plot time series.
+What you learn
+--------------
 
-- Example: download the station data of Hamburg from the `DWD open data server <https://opendata.dwd.de>`_
-  and plot the time series of temperature.
-- Exercise: plot the time series of precipitation in Berlin.
+- Where to find station data: the `DWD open data server <https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/>`_.
+- How to read a table of measurements with ``pandas``: separators, missing values and dates.
+- How to select periods and compute monthly and yearly means and sums with ``resample``.
+- How to plot a time series and save it for your page.
 
-Material available now
-----------------------
+1. The data
+-----------
 
-None yet.
+Every DWD station has a number and a file of **daily values**, from the first day it measured until the end
+of last year. In this class:
 
-Your analysis
--------------
+.. list-table::
+   :header-rows: 1
+   :widths: 15 40 45
 
-From this class on, you fill a page of this webpage with your plots and analysis: an example page,
-``pages/02_station_data/my_page.rst`` in JupyterLab, that you change into yours. It comes with the material of the class.
+   * - Number
+     - Station
+     - Data
+   * - 1975
+     - Hamburg-Fuhlsbüttel
+     - since 1936 · example: temperature
+   * - 433
+     - Berlin-Tempelhof
+     - since 1948 · exercise: precipitation
+
+All stations are in the `list of stations
+<https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/historical/KL_Tageswerte_Beschreibung_Stationen.txt>`_.
+The file of a station is a zip file with the measurements (``produkt_klima_tag_...txt``) and descriptions
+of the station (*Metadaten*). The measurements look like this, one line per day:
+
+.. code-block:: text
+
+   STATIONS_ID;MESS_DATUM;QN_3;  FX;  FM;QN_4; RSK;RSKF; SDK;SHK_TAG;  NM; VPM;  PM; TMK; UPM; TXK; TNK; TGK;eor
+          1975;19360101;-999;-999;-999;    5;   0.1;   1;-999;   0;   7.7;   8.5;  998.00;    7.3;   82.00;    8.8;    5.7;-999;eor
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 55 25
+
+   * - Column
+     - Meaning
+     - Unit
+   * - ``MESS_DATUM``
+     - date, as ``yyyymmdd``
+     -
+   * - ``TMK``
+     - daily mean temperature (2 m)
+     - °C
+   * - ``TXK``, ``TNK``
+     - daily maximum and minimum temperature (2 m)
+     - °C
+   * - ``RSK``
+     - daily precipitation
+     - mm
+   * - ``SDK``
+     - sunshine duration
+     - hours
+
+``-999`` means that there is no measurement for that day.
+
+2. The notebook
+---------------
+
+Open ``notebooks`` → ``lessons`` → ``class02_station_data.ipynb`` in JupyterLab and run it from top to
+bottom. It downloads the data once into ``notebooks/lessons/data/``, so you need internet the first time.
+
+The pandas you need, in short:
+
+.. code-block:: python
+
+   table = pd.read_csv(file, sep=";", skipinitialspace=True, na_values=[-999])   # read
+   table["date"] = pd.to_datetime(table["MESS_DATUM"].astype(str), format="%Y%m%d")
+   table = table.set_index("date")                                             # dates as row labels
+   table["TMK"]                       # one column
+   table.loc["2025", "TMK"]           # one year of it
+   table["TMK"].isna().sum()          # number of missing values
+   table["TMK"].resample("MS").mean() # monthly means; "YS" for yearly, .sum() for sums
+
+3. Exercise
+-----------
+
+Section 6 of the notebook: do the same for the **precipitation** (``RSK``) of **Berlin-Tempelhof**. Precipitation
+adds up, so use monthly and yearly **sums** instead of means. Save your plot as
+``/app/pages/02_station_data/berlin_precipitation.png``.
+
+4. Your page
+------------
+
+Your page is ready in JupyterLab: ``pages`` → ``02_station_data`` → ``my_page.rst``. The notebook saves both
+plots next to it.
+
+#. Run the notebook, including the exercise: your plots replace the example pictures.
+#. Open ``my_page.rst``, write your name, and describe each plot in two or three sentences, as the page asks.
+   Save with ``Ctrl + S``.
+#. Check it on http://localhost:8000 → *Classes → 02*, print it and **Save as PDF**, and send it to the tutor.
+
+Your page
+---------
+
+.. toctree::
+   :maxdepth: 1
+
+   /my_pages/02_station_data/my_page
