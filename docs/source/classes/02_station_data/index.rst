@@ -4,7 +4,7 @@
 ================================================================================
 
 Slides: `02 · Station data and time series <../../slides/deck.html?md=class02_station_data.md>`_
-· Notebook: ``notebooks/lessons/class02_station_data.ipynb``
+· Notebooks: ``notebooks/lessons/class02_get_station_data.ipynb`` and ``class02_use_station_data.ipynb``
 
 In this class you download the measurements of a weather station of the German Weather Service (DWD),
 read them with pandas, and plot how temperature and precipitation change over the years.
@@ -12,7 +12,9 @@ read them with pandas, and plot how temperature and precipitation change over th
 What you learn
 --------------
 
-- Where to find station data: the `DWD open data server <https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/>`_.
+- Where to find station data: the `DWD open data server <https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/>`_,
+  and how to download it with Python.
+- What a function is and why it helps: ``download_dwd_daily``.
 - How to read a table of measurements with ``pandas``: separators, missing values and dates.
 - How to select periods and compute monthly and yearly means and sums with ``resample``.
 - How to plot a time series and save it for your page.
@@ -72,11 +74,20 @@ of the station (*Metadaten*). The measurements look like this, one line per day:
 
 ``-999`` means that there is no measurement for that day.
 
-2. The notebook
----------------
+2. The notebooks
+----------------
 
-Open ``notebooks`` → ``lessons`` → ``class02_station_data.ipynb`` in JupyterLab and run it from top to
-bottom. It downloads the data once into ``notebooks/lessons/data/``, so you need internet the first time.
+Open them in JupyterLab (``notebooks`` → ``lessons``) and run them from top to bottom, in this order:
+
+#. ``class02_get_station_data.ipynb``: where the data is on the server, how to find a station and its file,
+   and how to download it with Python. Then the same steps as a **function**, ``download_dwd_daily``: why
+   functions help, and how to read one.
+#. ``class02_use_station_data.ipynb``: read the data with pandas and plot the time series.
+
+The data is downloaded once into ``notebooks/lessons/data/``, so you need internet the first time.
+
+The function, in short: ``download_dwd_daily(1975)`` gives back the zip file of station 1975 in ``data/``,
+and downloads it only if it is not there yet.
 
 The pandas you need, in short:
 
@@ -93,7 +104,7 @@ The pandas you need, in short:
 3. Exercise
 -----------
 
-Section 6 of the notebook: do the same for the **precipitation** (``RSK``) of **Berlin-Tempelhof**. Precipitation
+Section 6 of ``class02_use_station_data.ipynb``: do the same for the **precipitation** (``RSK``) of **Berlin-Tempelhof**. Precipitation
 adds up, so use monthly and yearly **sums** instead of means. Save your plot as
 ``/app/pages/02_station_data/berlin_precipitation.png``.
 

@@ -19,7 +19,6 @@ Helpers shared by the notebooks in examples/ (import with `from utils import ...
 """
 
 import pathlib
-import re
 
 import healpix as hp
 import matplotlib.pyplot as plt
@@ -75,22 +74,31 @@ def download_dwd_daily(station_id, folder="data"):
 
     The file name holds the period of the data (e.g. tageswerte_KL_01975_19360101_20251231_hist.zip),
     which grows every year, so it is looked up in the list of files on the DWD server.
+    The steps are explained in the notebook class02_get_station_data.
     """
-    station = f"{int(station_id):05d}"
+    station = f"{int(station_id):05d}"  # 1975 -> "01975", as in the file names
     folder = pathlib.Path(folder)
+
+    # 1. downloaded before? then there is nothing to do
     found = sorted(folder.glob(f"tageswerte_KL_{station}_*_hist.zip"))
     if found:
         return found[-1]
+
+    # 2. the list of files on the server, and the name of the file of this station in it
     listing = requests.get(DWD_DAILY, timeout=60)
     listing.raise_for_status()
-    match = re.search(
-        rf"tageswerte_KL_{station}_\d{{8}}_\d{{8}}_hist\.zip", listing.text
-    )
-    if match is None:
+    names = [
+        part
+        for part in listing.text.split('"')
+        if part.startswith(f"tageswerte_KL_{station}_") and part.endswith("_hist.zip")
+    ]
+    if not names:
         raise ValueError(f"No daily data of station {station} on {DWD_DAILY}")
-    data = requests.get(DWD_DAILY + match.group(), timeout=300)
+
+    # 3. download the file and save it in the folder
+    data = requests.get(DWD_DAILY + names[0], timeout=300)
     data.raise_for_status()
     folder.mkdir(parents=True, exist_ok=True)
-    path = folder / match.group()
+    path = folder / names[0]
     path.write_bytes(data.content)
     return path

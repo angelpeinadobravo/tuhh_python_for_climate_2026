@@ -2,16 +2,17 @@
 
 Python for Climate Science · TUHH
 
-<small>MPI-M · class page: *Classes → 02* · notebook `notebooks/lessons/class02_station_data.ipynb`</small>
+<small>MPI-M · class page: *Classes → 02* · notebooks `class02_get_station_data` and `class02_use_station_data`</small>
 
 ---
 
 ## Today
 
 1. Where to find **station data**: the German Weather Service (DWD)
-2. Read a table of measurements with **pandas**
-3. **Dates**, missing values, monthly and yearly values
-4. Plot a **time series** and put it on your page
+2. Download it with Python, and what a **function** is
+3. Read a table of measurements with **pandas**
+4. **Dates**, missing values, monthly and yearly values
+5. Plot a **time series** and put it on your page
 
 ---
 
@@ -30,19 +31,79 @@ Note: The list of all stations, with their numbers and periods, is linked on the
 
 ---
 
-## Getting the file
+## Part 1 · Where is the data?
+
+[opendata.dwd.de/…/daily/kl/historical/](https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/historical/): one zip file per station
+
+```text
+tageswerte_KL_01975_19360101_20251231_hist.zip
+│          │  │     │                 └ historical
+│          │  │     └ period: 1 Jan 1936 to 31 Dec 2025
+│          │  └ station number: Hamburg-Fuhlsbüttel
+│          └ KL: climate values
+└ tageswerte: daily values
+```
+
+Note: Open the link in the browser with the students and click through the folders before showing the Python steps.
+
+---
+
+## Part 1 · With Python
+
+```python
+import requests
+
+# the list of files of the folder historical/
+listing = requests.get(historical).text
+
+# the file of station 01975
+for part in listing.split('"'):
+    if (part.startswith("tageswerte_KL_01975_")
+            and part.endswith("_hist.zip")):
+        file_name = part
+
+# download it
+response = requests.get(historical + file_name)
+```
+
+`requests` asks a web server for a page or a file, as your browser does.
+
+---
+
+## Part 1 · A function
+
+The same steps for Berlin? Copy, and change the number in three places ... or write the steps **once**:
+
+```python
+def find_file_name(station):
+    for part in listing.split('"'):
+        if (part.startswith(f"tageswerte_KL_{station}_")
+                and part.endswith("_hist.zip")):
+            return part
+```
+
+Less repetition, fewer mistakes, easier to read: change it in **one** place.
+
+---
+
+## Part 1 · `download_dwd_daily`
+
+The function of the course (`utils/`), the steps of part 1 in one line:
 
 ```python
 from utils import download_dwd_daily
 
-hamburg_file = download_dwd_daily(1975)   # once, into notebooks/lessons/data/
+hamburg_file = download_dwd_daily(1975)
+berlin_file = download_dwd_daily(433)
+help(download_dwd_daily)
 ```
 
-A **zip** file: the measurements (`produkt_klima_tag_...txt`) and descriptions of the station (*Metadaten*).
+- Saves into `notebooks/lessons/data/`, and downloads only if the file is not there yet
+- A **zip** file: the measurements (`produkt_klima_tag_...txt`) and descriptions of the station (*Metadaten*)
 
 ---
 
-## What the data looks like
+## Part 2 · What the data looks like
 
 ```text
 STATIONS_ID;MESS_DATUM;QN_3;  FX;  FM;QN_4; RSK;RSKF; SDK;SHK_TAG;  NM; ... TMK; ...
