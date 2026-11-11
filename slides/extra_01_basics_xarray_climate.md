@@ -1,8 +1,8 @@
-# 01 · Basics of xarray for climate data
+# Extra 01 · Basics of xarray for climate data
 
 Python for Climate Science · TUHH
 
-<small>MPI-M · notebook `examples/01_basics_xarray_climate.ipynb`</small>
+<small>MPI-M · notebook `examples/extra_01_basics_xarray_climate.ipynb`</small>
 
 ---
 

@@ -3,7 +3,7 @@
 Add your Lessons Learned
 ================================================================================
 
-Every lesson page ends with a *Lessons learned* list. Each entry is one file written by one student.
+Every class page ends with a list of the students' pages. Each entry is one file written by one student.
 You write yours in the workshop container, check it on the webpage on your laptop, and send it to the
 tutor as a PDF.
 
@@ -13,11 +13,11 @@ Step by step
 #. :doc:`Start the container <getstart>` and complete the exercises of the lesson in your copy of the
    notebooks (``/app/notebooks/lessons``).
 
-#. In the JupyterLab terminal, copy the instructor's file of the lesson, e.g. for lesson 00:
+#. In the JupyterLab terminal, copy the instructor's file of the class, e.g. for extra 00:
 
    .. code-block:: console
 
-      $ cd /app/docs/source/lessons/00_intake_catalog/learned
+      $ cd /app/docs/source/extras/00_intake_catalog/learned
       $ cp 00_key_points.rst <lastname>_<firstname>.rst
 
 #. Open your file in JupyterLab, change the title and author, and write what you learned in a few bullet points.

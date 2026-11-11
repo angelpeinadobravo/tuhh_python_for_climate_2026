@@ -1,10 +1,10 @@
-.. _lesson_01:
+.. _extra_01:
 
-01 · Basics of xarray for climate data
+Extra 01 · Basics of xarray for climate data
 ================================================================================
 
-Notebook: `examples/01_basics_xarray_climate.ipynb <https://github.com/angelpeinadobravo/tuhh_python_for_climate_2026/blob/main/examples/01_basics_xarray_climate.ipynb>`_
-· Slides: `01 · Basics of xarray <../../slides/deck.html?md=01_basics_xarray_climate.md>`_
+Notebook: `examples/extra_01_basics_xarray_climate.ipynb <https://github.com/angelpeinadobravo/tuhh_python_for_climate_2026/blob/main/examples/extra_01_basics_xarray_climate.ipynb>`_
+· Slides: `Extra 01 · Basics of xarray <../../slides/deck.html?md=extra_01_basics_xarray_climate.md>`_
 
 What you learn
 --------------
@@ -18,10 +18,10 @@ What you learn
 Global mean temperature at different zoom levels
 ------------------------------------------------
 
-:numref:`lesson01_global_mean` shows that the global mean 2 m temperature barely depends on the zoom level:
+:numref:`extra01_global_mean` shows that the global mean 2 m temperature barely depends on the zoom level:
 the MAE against zoom 0 is below :math:`10^{-3}` K.
 
-.. _lesson01_global_mean:
+.. _extra01_global_mean:
 
 .. figure:: ../../../../examples/Fig/ERA5_global_mean_2t_different_zooms.png
    :align: center
@@ -32,10 +32,10 @@ the MAE against zoom 0 is below :math:`10^{-3}` K.
 Limited-area analysis
 ---------------------
 
-A box is a poor shape for the Tibetan Plateau. :numref:`lesson01_poly` selects the cells inside a polygon instead;
+A box is a poor shape for the Tibetan Plateau. :numref:`extra01_poly` selects the cells inside a polygon instead;
 zoom 8 resolves the edge of the plateau far better than zoom 6.
 
-.. _lesson01_poly:
+.. _extra01_poly:
 
 .. figure:: ../../../../examples/Fig/ERA5_poly_limited_area_sp_z6_vs_z8.png
    :align: center
@@ -55,7 +55,7 @@ Exercises
 Lessons learned
 ---------------
 
-Add your file to ``docs/source/lessons/01_basics_xarray_climate/learned/`` (:ref:`how to <contribsci>`).
+Add your file to ``docs/source/extras/01_basics_xarray_climate/learned/`` (:ref:`how to <contribsci>`).
 
 .. toctree::
    :glob:

@@ -1,7 +1,7 @@
 # Python for Climate Science
 
 Material of the MPI-M workshop *Introduction to Python for climate science* for TUHH:
-Jupyter notebooks with exercises, reveal.js slides for each class, and a webpage where students add their lessons learned.
+seven classes, each with reveal.js slides, a Jupyter notebook with exercises and a webpage where students add their plots and analysis, plus extra material.
 
 The webpage uses the Shibuya theme (layout of the skeleton project): navigation in the top bar, the full menu on the left and the page outline on the right, in light and dark mode.
 A plot `figure.png` is shown in light mode and, if it exists, `figure_dark.png` in dark mode; otherwise `figure.png` is used for both modes.
@@ -10,9 +10,9 @@ A plot `figure.png` is shown in light mode and, if it exists, `figure_dark.png` 
 
 | Folder           | Content                                                                    |
 |------------------|----------------------------------------------------------------------------|
-| `examples/`      | One notebook per lesson, the figures they write (`Fig/`) and shared helpers (`utils/`) |
+| `examples/`      | One notebook per class (`classNN_*`), the extras (`extra_*`), the figures they write (`Fig/`) and shared helpers (`utils/`) |
 | `slides/`        | One reveal.js deck per class, in Markdown, and `deck.html` that shows them  |
-| `docs/source/`   | The webpage: `lessons/` (one page per lesson with the students' lessons learned), `slides.rst`, `contribute/` |
+| `docs/source/`   | The webpage: `classes/` (one page per class with the students' pages), `extras/`, `slides.rst`, `contribute/` |
 | `tests/`         | pytest checks run by the CI                                                |
 
 ## Install
@@ -54,7 +54,7 @@ To present a class without building the webpage, serve the repository root and o
 ```
 python -m http.server 8000
 ```
-http://localhost:8000/slides/deck.html?md=00_intake_catalog.md
+http://localhost:8000/slides/deck.html?md=extra_00_intake_catalog.md
 
 ## Contributors
 - Angel Peinado Bravo

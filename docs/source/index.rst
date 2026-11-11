@@ -28,8 +28,9 @@ More information
 .. toctree::
    :maxdepth: 1
 
-   lessons/index
+   classes/index
    slides
+   extras/index
    references
    contribute/index
 
@@ -37,5 +38,4 @@ Indices and tables
 ------------------
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`

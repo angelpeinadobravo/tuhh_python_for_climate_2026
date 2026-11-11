@@ -3,7 +3,7 @@
 Contribute
 ================================================================================
 
-This webpage grows with every class: each student adds what they learned to the page of the lesson.
+This webpage grows with every class: each student adds their plots and analysis to the page of the class.
 
 What can you do?
 ----------------

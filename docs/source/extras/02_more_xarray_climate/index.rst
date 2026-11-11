@@ -1,10 +1,10 @@
-.. _lesson_02:
+.. _extra_02:
 
-02 · Climate analysis with xarray
+Extra 02 · Climate analysis with xarray
 ================================================================================
 
-Notebook: `examples/02_more_xarray_climate.ipynb <https://github.com/angelpeinadobravo/tuhh_python_for_climate_2026/blob/main/examples/02_more_xarray_climate.ipynb>`_
-· Slides: `02 · Climate analysis <../../slides/deck.html?md=02_more_xarray_climate.md>`_
+Notebook: `examples/extra_02_more_xarray_climate.ipynb <https://github.com/angelpeinadobravo/tuhh_python_for_climate_2026/blob/main/examples/extra_02_more_xarray_climate.ipynb>`_
+· Slides: `Extra 02 · Climate analysis <../../slides/deck.html?md=extra_02_more_xarray_climate.md>`_
 
 What you learn
 --------------
@@ -19,7 +19,7 @@ What you learn
 Warming and its trend
 ---------------------
 
-.. _lesson02_warming:
+.. _extra02_warming:
 
 .. figure:: ../../../../examples/Fig/ERA5_regional_mean_2t_anomalies.png
    :align: center
@@ -31,7 +31,7 @@ Warming and its trend
 Monsoon rainfall in the Sahel
 -----------------------------
 
-.. _lesson02_hovmuller:
+.. _extra02_hovmuller:
 
 .. figure:: ../../../../examples/Fig/ERA5_hovmuller_sahel_region.png
    :align: center
@@ -43,7 +43,7 @@ Monsoon rainfall in the Sahel
 The eddy-driven jet
 -------------------
 
-.. _lesson02_jet:
+.. _extra02_jet:
 
 .. figure:: ../../../../examples/Fig/ERA5_eddie_drive_jet_season_all.png
    :align: center
@@ -55,7 +55,7 @@ The eddy-driven jet
 Lessons learned
 ---------------
 
-Add your file to ``docs/source/lessons/02_more_xarray_climate/learned/`` (:ref:`how to <contribsci>`).
+Add your file to ``docs/source/extras/02_more_xarray_climate/learned/`` (:ref:`how to <contribsci>`).
 
 .. toctree::
    :glob:

@@ -80,8 +80,9 @@ html_theme_options = {
     "accent_color": "indigo",  # overridden by the pastel blue in custom.css
     "color_mode": "auto",  # follow the visitor's system; switch in the top bar
     "nav_links": [
-        {"title": "Lessons", "url": "lessons/index"},
+        {"title": "Classes", "url": "classes/index"},
         {"title": "Slides", "url": "slides"},
+        {"title": "Extras", "url": "extras/index"},
         {"title": "Contribute", "url": "contribute/index"},
     ],
     "github_url": GITHUB_URL,

@@ -1,8 +1,8 @@
-# 00 · Accessing climate data
+# Extra 00 · Accessing climate data
 
 Python for Climate Science · TUHH
 
-<small>MPI-M · notebook `examples/00_intake_catalog.ipynb`</small>
+<small>MPI-M · notebook `examples/extra_00_intake_catalog.ipynb`</small>
 
 ---
 

@@ -1,8 +1,8 @@
-# 02 · Climate analysis with xarray
+# Extra 02 · Climate analysis with xarray
 
 Python for Climate Science · TUHH
 
-<small>MPI-M · notebook `examples/02_more_xarray_climate.ipynb`</small>
+<small>MPI-M · notebook `examples/extra_02_more_xarray_climate.ipynb`</small>
 
 ---
 

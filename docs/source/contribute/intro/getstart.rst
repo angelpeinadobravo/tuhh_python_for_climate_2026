@@ -60,7 +60,7 @@ and the container tells you so.
 
       $ cp -r /app/examples /app/notebooks/lessons
 
-   A lesson that comes later is one more notebook to copy into ``/app/notebooks/lessons``.
+   The notebook of a class that comes later is one more file to copy into ``/app/notebooks/lessons``.
 
 Without Docker
 --------------
