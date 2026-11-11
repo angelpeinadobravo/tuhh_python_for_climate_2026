@@ -13,12 +13,12 @@ Step by step
 #. :doc:`Start the container <getstart>` and complete the exercises of the lesson in your copy of the
    notebooks (``/app/notebooks/lessons``).
 
-#. In the JupyterLab terminal, copy the instructor's file of the class, e.g. for extra 00:
+#. In the JupyterLab terminal, copy the example page of the class, e.g. for class 01:
 
    .. code-block:: console
 
-      $ cd /app/docs/source/extras/00_intake_catalog/learned
-      $ cp 00_key_points.rst <lastname>_<firstname>.rst
+      $ cd /app/docs/source/classes/01_setup/students
+      $ cp 00_example.rst <lastname>_<firstname>.rst
 
 #. Open your file in JupyterLab, change the title and author, and write what you learned in a few bullet points.
    A figure of your own goes next to your file (``<lastname>_<firstname>.png``) and into the page with:
