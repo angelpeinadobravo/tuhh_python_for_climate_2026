@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Python for Climate Science · Slides</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <style>
+    /* pastel accents of the webpage (docs/source/_static/custom.css) */
+    .reveal { color: #2f2b36; }
+    .reveal h1, .reveal h2, .reveal h3 { color: #2b2733; text-transform: none; }
+    .reveal a { color: #4a6c9f; }
+    .reveal .slides section img { max-height: 60vh; border: 0; box-shadow: none; }
+    .reveal pre { font-size: 0.5em; box-shadow: none; }
+    .reveal table { font-size: 0.7em; }
+    .reveal small { color: #6b6574; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section data-separator-vertical="\r?\n--\r?\n"></section>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/markdown/markdown.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/math/math.js"></script>
+  <script>
+    // ?md=<deck>.md picks a deck next to this file; nothing else, since the Markdown may contain HTML
+    const md = new URLSearchParams(location.search).get("md") || "00_intake_catalog.md";
+    if (!/^[\w-]+\.md$/.test(md)) {
+      document.body.textContent = "Unknown deck: " + md;
+      throw new Error("Unknown deck: " + md);
+    }
+    // no id on this section: reveal.js copies it to every slide and breaks the #/n links
+    document.querySelector(".slides > section").setAttribute("data-markdown", md);
+    Reveal.initialize({
+      hash: true,
+      slideNumber: "c/t",
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX],
+    });
+  </script>
+</body>
+</html>

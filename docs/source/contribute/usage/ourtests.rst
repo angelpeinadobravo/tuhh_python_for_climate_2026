@@ -3,7 +3,9 @@
 Our Tests
 =========
 
-This project uses pytest for executing the Python tests in the ``tests/`` directory. All the tests in this directory are also run by the ``.gitlab-ci.yml``.
+This project uses pytest for executing the Python tests in the ``tests/`` directory. All the tests in this directory are also run by GitHub Actions (``.github/workflows/pages.yml``) on every push and pull request.
+
+The tests check that every notebook in ``examples/`` is a valid Jupyter notebook and that the shared helpers in ``examples/utils`` work.
 
 Testing Python Code
 ###################

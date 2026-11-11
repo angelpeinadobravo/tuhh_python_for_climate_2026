@@ -1,9 +1,9 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 authors:
-- family-names: "XXXXX"
-  given-names: "YYYYYY"
-  orcid: "??????"
-title: "????"
+- family-names: "Peinado Bravo"
+  given-names: "Angel"
+title: "Python for Climate Science: TUHH workshop"
 version: 0.0.0
-date-released: day month year
+repository-code: "https://github.com/angelpeinadobravo/tuhh_python_for_climate_2026"
+license: BSD-3-Clause
