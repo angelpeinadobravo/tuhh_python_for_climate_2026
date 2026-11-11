@@ -16,7 +16,7 @@ A plot `figure.png` is shown in light mode and, if it exists, `figure_dark.png` 
 | `tests/`         | pytest checks run by the CI                                                |
 
 ## Install
-The workshop runs in a Docker container that clones this repository and installs `requirements.txt` (see the workshop folder and the [getting started page](https://angelpeinadobravo.github.io/tuhh_python_for_climate_2026/contribute/intro/getstart.html)).
+The workshop runs in a Docker container (zip file from the tutor) that downloads this repository into a folder on the student's laptop and installs `requirements.txt`; see `docs/source/contribute/intro/getstart.rst`.
 
 To (locally) reproduce this project without Docker, clone the repository and create an environment with Python 3.11, e.g. using virtualenv:
 ```
@@ -39,9 +39,10 @@ You will also need to install the pre-commit hooks, e.g.
 which will be used when you try to commit something or you run `pre-commit run`
 
 ## Webpage
-The webpage is published by GitHub Actions on every push to main: [angelpeinadobravo.github.io/tuhh_python_for_climate_2026](https://angelpeinadobravo.github.io/tuhh_python_for_climate_2026/).
+The webpage is not published online. In the workshop container it runs on http://localhost:8000 and is rebuilt on every save; students print their page as PDF for the tutor.
+GitHub Actions (`.github/workflows/checks.yml`) only checks formatting, tests and the docs build.
 
-You can build and view it locally. The slides load their Markdown over HTTP, so serve the files instead of opening them:
+Without the container, build and view it locally. The slides load their Markdown over HTTP, so serve the files instead of opening them:
 ```
 cd ./docs && make html
 python -m http.server 8000 -d build/html
