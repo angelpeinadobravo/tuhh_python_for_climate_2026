@@ -58,7 +58,8 @@ bibtex_bibfiles = ["./references.bib"]
 bibtex_reference_style = "label"
 
 templates_path = ["_templates"]
-exclude_patterns = []
+# students' pages start as copies of these templates (see _create_student_pages)
+exclude_patterns = ["classes/*/students/template_*"]
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
@@ -139,7 +140,19 @@ def _copy_slides(app, exception):
             )
 
 
+# -- Student pages -------------------------------------------------------------
+# Each student edits classes/*/students/my_page.rst on their own laptop. It starts as a copy of
+# template_my_page.rst (same for every template_* file) and git ignores it, so the tutor's updates
+# of the lessons never clash with a student's page.
+def _create_student_pages(app, config):
+    for template in (ROOT / "docs/source/classes").glob("*/students/template_*"):
+        mine = template.with_name(template.name.removeprefix("template_"))
+        if not mine.exists():
+            shutil.copy(template, mine)
+
+
 def setup(app):
+    app.connect("config-inited", _create_student_pages)
     # priority below 500: run before Sphinx collects the images to copy
     app.connect("doctree-read", _add_dark_images, priority=400)
     app.connect("build-finished", _copy_slides)

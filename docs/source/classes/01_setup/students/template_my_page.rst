@@ -1,6 +1,5 @@
 .. Lines that start with ".." and a space, like these, are comments: they do not appear on the page.
-   Copy this file to <lastname>_<firstname>.rst (all lower case, no spaces or accents)
-   and replace the example text with yours.
+   This is your page: replace the example text with yours and save. It stays on your laptop.
 
 Example Student · Hamburg
 =========================
@@ -19,9 +18,10 @@ climate? Words between two stars are **bold**, between one star *italic*.
 - A list item starts with a dash and a space.
 - Leave an empty line before and after a list.
 
-.. Your picture: the file name must be exactly the name of your picture in this folder.
+.. Your picture: section 7 of the notebook saves it as my_region.png in this folder.
+   An uploaded picture works too: write its file name below.
 
-.. figure:: 00_example.png
+.. figure:: my_region.png
    :width: 60%
 
    My region on the globe, made with the notebook of class 01.

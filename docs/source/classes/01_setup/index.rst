@@ -94,28 +94,25 @@ Open http://localhost:8888 and log in with your password.
 5. Your page on this webpage
 ----------------------------
 
-Everybody adds a page to the list at the end of this page. Pages are text files in the
+Your page is already there: *Example Student · Hamburg*, at the end of this page. You only change it.
+Pages are text files in the
 `reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`_ format (``.rst``).
 
-#. Copy the example page in the terminal (use your names, all lower case, no spaces or accents):
+#. Make the picture of your region: change ``region_name``, ``lon`` and ``lat`` in section 7 of the
+   notebook and run it. It saves the picture as ``my_region.png`` next to your page.
 
-   .. code-block:: console
+   Prefer a picture of your own? In the file browser, open ``docs/source/classes/01_setup/students``,
+   **upload** it (arrow up icon), and write its file name in the ``.. figure::`` line of your page.
 
-      $ cd /app/docs/source/classes/01_setup/students
-      $ cp 00_example.rst <lastname>_<firstname>.rst
-
-#. Your picture must be in the same folder, as ``<lastname>_<firstname>.png``. Either
-
-   - run section 7 of the notebook (it saves the picture there), or
-   - open the folder ``docs/source/classes/01_setup/students`` in the file browser, **upload** a picture of
-     your own and rename it (right-click → *Rename*). A ``.jpg`` works too.
-
-#. Open your ``.rst`` file in the file browser and change the title, your name, your region, the text,
-   and the file name in the ``.. figure::`` line. Save with ``Ctrl + S``.
+#. In the file browser, open ``docs/source/classes/01_setup/students/my_page.rst``. Replace the example
+   title, name, region and text with yours, and save with ``Ctrl + S``.
 #. Open http://localhost:8000/classes/01_setup/ (*Classes → 01*). A few seconds after you save, your page
-   appears in the list below. If it does not, the terminal of ``docker compose up`` shows the error
-   with the line number.
+   shows your title in the list below. If it does not, the terminal of ``docker compose up`` shows the
+   error with the line number.
 #. Open your page, print it (``Ctrl + P`` / ``Cmd + P``), choose **Save as PDF**, and send the PDF to the tutor.
+
+Your page and picture stay on your laptop. Deleted ``my_page.rst`` by mistake? The next save of any page
+brings back the example.
 
 6. Stop and start again
 -----------------------
@@ -127,11 +124,10 @@ workshop folder. Your work stays in the workshop folder on your laptop: the cour
 Something does not work? See :doc:`../../contribute/intro/getstart` and the *Problems?* table of the
 ``README.md`` in the workshop folder.
 
-Students
---------
+Your page
+---------
 
 .. toctree::
-   :glob:
    :maxdepth: 1
 
-   students/*
+   students/my_page

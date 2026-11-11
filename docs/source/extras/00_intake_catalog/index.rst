@@ -29,7 +29,8 @@ Exercises
 Lessons learned
 ---------------
 
-Add your file to ``docs/source/extras/00_intake_catalog/learned/`` (:ref:`how to <contribsci>`).
+In ``docs/source/extras/00_intake_catalog/learned/``, copy ``00_key_points.rst`` to ``<lastname>_<firstname>.rst`` and
+write yours (:ref:`how to write a page <contribsci>`).
 
 .. toctree::
    :glob:

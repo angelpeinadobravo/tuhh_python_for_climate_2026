@@ -1,31 +1,27 @@
 .. _contribsci:
 
-Add your Lessons Learned
+Your Page in Each Class
 ================================================================================
 
-Every class page ends with a list of the students' pages. Each entry is one file written by one student.
-You write yours in the workshop container, check it on the webpage on your laptop, and send it to the
-tutor as a PDF.
+Every class with an exercise ends with *Your page*: an example page, *Example Student*, that you change
+into yours. You write it in the workshop container, check it on the webpage on your laptop, and send it
+to the tutor as a PDF.
 
 Step by step
 ------------
 
-#. :doc:`Start the container <getstart>` and complete the exercises of the lesson in your copy of the
+#. :doc:`Start the container <getstart>` and complete the exercises of the class in your copy of the
    notebooks (``/app/notebooks/lessons``).
 
-#. In the JupyterLab terminal, copy the example page of the class, e.g. for class 01:
+#. In the JupyterLab file browser, open ``docs/source/classes/<class>/students/my_page.rst``, e.g.
+   ``docs/source/classes/01_setup/students/my_page.rst`` for class 01.
 
-   .. code-block:: console
-
-      $ cd /app/docs/source/classes/01_setup/students
-      $ cp 00_example.rst <lastname>_<firstname>.rst
-
-#. Open your file in JupyterLab, change the title and author, and write what you learned in a few bullet points.
-   A figure of your own goes next to your file (``<lastname>_<firstname>.png``) and into the page with:
+#. Replace the example title, name and text with yours. A figure of your own goes into the same folder
+   (the notebooks of the classes save their plots there, or upload one) and into the page with:
 
    .. code-block:: rst
 
-      .. figure:: <lastname>_<firstname>.png
+      .. figure:: my_plot.png
          :width: 100%
 
          What the figure shows.
@@ -36,7 +32,17 @@ Step by step
 #. Open your page, print it (``Ctrl+P`` or ``Cmd+P``) and choose **Save as PDF**. The printout has only the
    page content, also in dark mode. Send the PDF to the tutor.
 
-Your file stays in ``course/`` on your laptop, so you can keep improving it after every class.
+Your page stays in ``course/`` on your laptop, so you can keep improving it after every class. New lessons
+of the tutor never overwrite it.
+
+For the tutor
+-------------
+
+The example page of a class is ``students/template_my_page.rst``. When the webpage is built, every
+``template_<name>`` file of a ``students/`` folder is copied to ``<name>`` if that file does not exist yet
+(``_create_student_pages`` in ``docs/source/conf.py``). git ignores the copies, so you can improve the
+templates at any time without clashing with the students' pages. The class page lists ``students/my_page``
+in a ``toctree``.
 
 Improving the lessons
 ---------------------

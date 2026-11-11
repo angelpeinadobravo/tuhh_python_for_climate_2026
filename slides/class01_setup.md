@@ -120,13 +120,11 @@ All of it, with explanations, is in the notebook.
 
 ## 5 · Your page on the webpage
 
-1. Copy the example page, with **your** names:
-   ```bash
-   cd /app/docs/source/classes/01_setup/students
-   cp 00_example.rst <lastname>_<firstname>.rst
-   ```
-2. Make your picture: section 7 of the notebook, or **upload** one
-3. Edit your `.rst` file in JupyterLab and save
+Your page is ready: *Example Student · Hamburg*. You only change it.
+
+1. Make your picture: section 7 of the notebook (or **upload** one)
+2. Open `docs/source/classes/01_setup/students/my_page.rst` in JupyterLab
+3. Write **your** title, name, region and text, and save
 4. Check it on http://localhost:8000 → *Classes → 01*
 5. Print → **Save as PDF** → send it to the tutor
 
@@ -146,7 +144,7 @@ Why this region?
 
 Words between two stars are **bold**.
 
-.. figure:: doe_jane.png
+.. figure:: my_region.png
    :width: 60%
 
    The caption of the picture.

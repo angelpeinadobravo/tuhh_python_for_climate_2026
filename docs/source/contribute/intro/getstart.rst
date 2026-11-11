@@ -78,4 +78,4 @@ Clone the repository and create an environment with Python 3.11, e.g. with ``ven
 In Levante, please follow the documentation: `Python Environments <https://docs.dkrz.de/blog/2021/conda_path.html>`_,
 and make the environment visible for JupyterHub with ``python -m ipykernel install --user --name tuhh_env``.
 
-Now everything should work out of the box and you can :doc:`add your lessons learned <contribsci>`. If not, please :ref:`contact us <contact>`.
+Now everything should work out of the box and you can :doc:`write your page <contribsci>`. If not, please :ref:`contact us <contact>`.

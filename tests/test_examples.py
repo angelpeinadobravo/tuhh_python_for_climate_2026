@@ -19,6 +19,7 @@ Checks run by the CI: the notebooks under examples/ must be valid Jupyter
 notebooks and the helpers in examples/utils must work on a HEALPix grid.
 """
 
+import importlib.util
 import json
 import pathlib
 import sys
@@ -54,3 +55,20 @@ def test_get_lon_lat_zoom_1():
 def test_set_helpers_and_error():
     assert sorted(utils.f_intersection([1, 2, 3], [2, 3, 4])) == [2, 3]
     assert utils.f_mean_average_error(np.array([1.0, 3.0]), np.array([0.0, 0.0])) == 2.0
+
+
+def test_student_pages_start_from_templates(tmp_path, monkeypatch):
+    spec = importlib.util.spec_from_file_location("conf", ROOT / "docs/source/conf.py")
+    conf = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(conf)
+    students = tmp_path / "docs/source/classes/01_setup/students"
+    students.mkdir(parents=True)
+    (students / "template_my_page.rst").write_text("template")
+    (students / "template_my_region.png").write_text("picture")
+    (students / "my_region.png").write_text("the student's own picture")
+    monkeypatch.setattr(conf, "ROOT", tmp_path)
+
+    conf._create_student_pages(None, None)
+
+    assert (students / "my_page.rst").read_text() == "template"
+    assert (students / "my_region.png").read_text() == "the student's own picture"
