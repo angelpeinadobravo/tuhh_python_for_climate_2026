@@ -10,7 +10,18 @@ Press ``F`` for full screen, ``S`` for speaker notes and ``Esc`` for the overvie
 Classes
 -------
 
-Each :ref:`class <classes>` gets its deck together with its material.
+.. list-table::
+   :header-rows: 1
+   :widths: 10 50 40
+
+   * - Class
+     - Slides
+     - Page
+   * - 01
+     - `Setting up the workshop <slides/deck.html?md=class01_setup.md>`_
+     - :ref:`class_01`
+
+The other :ref:`classes <classes>` get their deck together with their material.
 
 Extras
 ------

@@ -9,7 +9,7 @@ What can you do?
 ----------------
 
 Most likely you want to :doc:`get started <intro/getstart>` with the workshop container first.
-After a class, :doc:`add your lessons learned <intro/contribsci>`.
+After a class, :doc:`write your page <intro/contribsci>`.
 
 Contents
 --------
