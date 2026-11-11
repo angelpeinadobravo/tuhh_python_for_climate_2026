@@ -1,5 +1,7 @@
 ##### Folders to ignore - files may be too large, too many, etc. #####
 build
+# my_notebooks/ of the workshop container is mounted here
+notebooks
 bin
 
 ##### Documentation Build Artifacts #####
