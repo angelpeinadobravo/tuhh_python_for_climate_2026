@@ -32,7 +32,7 @@
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/math/math.js"></script>
   <script>
     // ?md=<deck>.md picks a deck next to this file; nothing else, since the Markdown may contain HTML
-    const md = new URLSearchParams(location.search).get("md") || "extra_00_intake_catalog.md";
+    const md = new URLSearchParams(location.search).get("md") || "class01_setup.md";
     if (!/^[\w-]+\.md$/.test(md)) {
       document.body.textContent = "Unknown deck: " + md;
       throw new Error("Unknown deck: " + md);

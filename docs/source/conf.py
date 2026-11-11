@@ -60,7 +60,7 @@ bibtex_reference_style = "label"
 
 templates_path = ["_templates"]
 # the templates of the students' pages are read from my_pages/ (see _student_pages)
-exclude_patterns = ["classes/*/template/*"]
+exclude_patterns = ["classes/*/template/*", "extras/*/template/*"]
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
@@ -131,19 +131,17 @@ def _add_dark_images(app, doctree):
 
 
 # -- reveal.js slides ------------------------------------------------------------
-# slides/*.md load figures from ../examples/Fig, so both folders keep their repo
-# path in the built site and the decks work the same locally and online.
+# slides/ keeps its repo path in the built site, so the decks work the same locally and online.
 def _copy_slides(app, exception):
     if exception is None and app.builder.format == "html":
-        for folder in ("slides", "examples/Fig"):
-            shutil.copytree(
-                ROOT / folder, pathlib.Path(app.outdir) / folder, dirs_exist_ok=True
-            )
+        shutil.copytree(
+            ROOT / "slides", pathlib.Path(app.outdir) / "slides", dirs_exist_ok=True
+        )
 
 
 # -- Student pages -------------------------------------------------------------
 # Students keep their pages in their own folder, like their notebooks: /app/pages in the workshop
-# container (STUDENT_PAGES), my_pages/ next to this repo's docs otherwise. Each class's template/
+# container (STUDENT_PAGES), my_pages/ next to this repo's docs otherwise. Each class's (and extra's) template/
 # files are copied there once (never overwritten), and the folder is copied into the sources as
 # my_pages/ for Sphinx to read. So students never edit the course, and its updates never clash.
 STUDENT_PAGES = pathlib.Path(os.environ.get("STUDENT_PAGES", ROOT / "my_pages"))
@@ -151,7 +149,11 @@ STUDENT_PAGES = pathlib.Path(os.environ.get("STUDENT_PAGES", ROOT / "my_pages"))
 
 def _student_pages(app, config):
     source = ROOT / "docs/source"
-    for template in (source / "classes").glob("*/template/*"):
+    templates = [
+        *(source / "classes").glob("*/template/*"),
+        *(source / "extras").glob("*/template/*"),
+    ]
+    for template in templates:
         mine = STUDENT_PAGES / template.parent.parent.name / template.name
         if not mine.exists():
             mine.parent.mkdir(parents=True, exist_ok=True)

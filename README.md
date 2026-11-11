@@ -10,7 +10,7 @@ A plot `figure.png` is shown in light mode and, if it exists, `figure_dark.png` 
 
 | Folder           | Content                                                                    |
 |------------------|----------------------------------------------------------------------------|
-| `examples/`      | One notebook per class (`classNN_*`), the extras (`extra_*`), the figures they write (`Fig/`) and shared helpers (`utils/`) |
+| `examples/`      | One or two notebooks per class (`classNN_*`), the extras (`extra_*`) and shared helpers (`utils/`) |
 | `slides/`        | One reveal.js deck per class, in Markdown, and `deck.html` that shows them  |
 | `docs/source/`   | The webpage: `classes/` (one page per class, with the template of the students' page in `template/`), `extras/`, `slides.rst`, `contribute/` |
 | `tests/`         | pytest checks run by the CI                                                |
@@ -54,7 +54,7 @@ To present a class without building the webpage, serve the repository root and o
 ```
 python -m http.server 8000
 ```
-http://localhost:8000/slides/deck.html?md=extra_00_intake_catalog.md
+http://localhost:8000/slides/deck.html?md=class01_setup.md
 
 ## Contributors
 - Angel Peinado Bravo

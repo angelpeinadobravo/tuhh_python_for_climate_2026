@@ -3,29 +3,34 @@
 Extras
 ================================================================================
 
-Material that goes beyond the :ref:`classes`: the notebooks of the first version of the workshop. Parts of
-them come back in the classes; the rest are extra exercises and topics for students who want more.
+Material that goes beyond the :ref:`classes`, for students who want more. Each extra is one notebook in
+``notebooks/lessons``, with a page to fill like the classes. They use ERA5 from the catalog of
+:ref:`class 05 <class_05>`, so do classes 05 and 06 first.
 
 .. list-table::
    :header-rows: 1
-   :widths: 10 40 50
+   :widths: 30 35 35
 
    * - Extra
      - Notebook
      - Topics
-   * - 00
-     - ``examples/extra_00_intake_catalog.ipynb``
-     - Intake catalogs, netCDF files, HEALPix vs lon-lat grids, quick plots
-   * - 01
-     - ``examples/extra_01_basics_xarray_climate.ipynb``
-     - Global means, point selection, limited-area analysis with boxes and polygons
-   * - 02
-     - ``examples/extra_02_more_xarray_climate.ipynb``
-     - Anomalies, trends, Hovmöller diagram, jet stream, correlations
+   * - :ref:`extra_regional`
+     - ``extra_regional_analysis.ipynb``
+     - the cells of a region: boxes and polygons, at zoom 6 and 8
+   * - :ref:`extra_anomalies`
+     - ``extra_anomalies_seasonal_cycle.ipynb``
+     - seasonal cycle, anomalies, trends and maps of the warming
+   * - :ref:`extra_hovmuller`
+     - ``extra_hovmuller_diagram.ipynb``
+     - a Hovmöller diagram of the West African monsoon
+   * - :ref:`extra_jet`
+     - ``extra_jet_stream.ipynb``
+     - the eddy-driven jet: zonal mean, latitude and strength since 1950
 
 .. toctree::
    :maxdepth: 1
 
-   00_intake_catalog/index
-   01_basics_xarray_climate/index
-   02_more_xarray_climate/index
+   regional_analysis/index
+   anomalies_seasonal_cycle/index
+   hovmuller_diagram/index
+   jet_stream/index

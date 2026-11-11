@@ -43,19 +43,17 @@ Extras
 
 .. list-table::
    :header-rows: 1
-   :widths: 10 50 40
+   :widths: 50 50
 
-   * - Extra
-     - Slides
+   * - Slides
      - Page
-   * - 00
-     - `Accessing climate data <slides/deck.html?md=extra_00_intake_catalog.md>`_
-     - :ref:`extra_00`
-   * - 01
-     - `Basics of xarray for climate data <slides/deck.html?md=extra_01_basics_xarray_climate.md>`_
-     - :ref:`extra_01`
-   * - 02
-     - `Climate analysis with xarray <slides/deck.html?md=extra_02_more_xarray_climate.md>`_
-     - :ref:`extra_02`
+   * - `Regional analysis <slides/deck.html?md=extra_regional_analysis.md>`_
+     - :ref:`extra_regional`
+   * - `Anomalies and the seasonal cycle <slides/deck.html?md=extra_anomalies_seasonal_cycle.md>`_
+     - :ref:`extra_anomalies`
+   * - `Hovmöller diagram <slides/deck.html?md=extra_hovmuller_diagram.md>`_
+     - :ref:`extra_hovmuller`
+   * - `The jet stream <slides/deck.html?md=extra_jet_stream.md>`_
+     - :ref:`extra_jet`
 
 To write or present a deck yourself, see :ref:`ourslides`.
