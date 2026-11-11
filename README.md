@@ -14,9 +14,10 @@ A plot `figure.png` is shown in light mode and, if it exists, `figure_dark.png` 
 | `slides/`        | One reveal.js deck per class, in Markdown, and `deck.html` that shows them  |
 | `docs/source/`   | The webpage: `classes/` (one page per class, with the template of the students' page in `template/`), `extras/`, `slides.rst`, `contribute/` |
 | `tests/`         | pytest checks run by the CI                                                |
+| `workshop/`      | The workshop kit for the students: `Dockerfile`, `docker-compose.yml`, `start.sh` and their README (see *Making the zip* there) |
 
 ## Install
-The workshop runs in a Docker container (zip file from the tutor) that downloads this repository into a folder on the student's laptop and installs `requirements.txt`; see `docs/source/contribute/intro/getstart.rst`.
+The workshop runs in a Docker container that downloads this repository into a folder on the student's laptop and installs `requirements.txt`. The kit is in `workshop/`: zip it with `git archive` (see `workshop/README.md`) and give the zip to the students; how they use it is in `docs/source/contribute/intro/getstart.rst`.
 
 To (locally) reproduce this project without Docker, clone the repository and create an environment with Python 3.11, e.g. using virtualenv:
 ```

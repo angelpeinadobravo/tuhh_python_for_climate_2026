@@ -4,6 +4,15 @@ build
 notebooks
 # students' own pages and their copy for Sphinx (see docs/source/conf.py)
 my_pages
+# the workshop kit (workshop/): what the container and the students create next to it stays out of git
+workshop/.env
+workshop/course/*
+!workshop/course/README.txt
+!workshop/my_pages/
+workshop/my_pages/*
+!workshop/my_pages/README.txt
+workshop/my_notebooks/*
+!workshop/my_notebooks/README.txt
 bin
 
 ##### Documentation Build Artifacts #####

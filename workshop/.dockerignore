@@ -1,0 +1,5 @@
+# only Dockerfile and start.sh are needed to build the image
+course
+my_notebooks
+my_pages
+.env
