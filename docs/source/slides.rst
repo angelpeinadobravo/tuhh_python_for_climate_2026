@@ -23,6 +23,9 @@ Classes
    * - 02
      - `Station data and time series <slides/deck.html?md=class02_station_data.md>`_
      - :ref:`class_02`
+   * - 03
+     - `Gridded data on a lon-lat grid <slides/deck.html?md=class03_gridded_data.md>`_
+     - :ref:`class_03`
 
 The other :ref:`classes <classes>` get their deck together with their material.
 

@@ -107,3 +107,50 @@ def test_download_dwd_daily_finds_file_and_downloads_once(tmp_path, monkeypatch)
     assert len(calls) == 2  # listing + file, nothing the second time
     with pytest.raises(ValueError):
         utils.download_dwd_daily(433, tmp_path / "data")
+
+
+def test_download_eobs_takes_newest_file_once(tmp_path, monkeypatch):
+    base = "https://example.org/Grid_0.25deg_reg_ensemble/"
+    page = "".join(
+        f'<a href="{base}{name}">'
+        for name in [
+            "tg_ens_mean_0.25deg_reg_1995-2010_v33.0e.nc",
+            "tg_ens_mean_0.25deg_reg_2011-2025_v33.0e.nc",
+            "tg_ens_spread_0.25deg_reg_2011-2025_v33.0e.nc",
+            "tg_ens_mean_0.1deg_reg_2011-2025_v33.0e.nc",
+        ]
+    )
+    calls = []
+
+    class Response:
+        def __init__(self, text=""):
+            self.text = text
+
+        def raise_for_status(self):
+            pass
+
+        def iter_content(self, chunk_size):
+            yield b"net"
+            yield b"cdf"
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            pass
+
+    def fake_get(url, timeout, stream=False):
+        calls.append(url)
+        return Response(text=page if url == utils.EOBS_CHUNKS else "")
+
+    monkeypatch.setattr(utils.requests, "get", fake_get)
+
+    path = utils.download_eobs("tg", tmp_path / "data")
+    again = utils.download_eobs("tg", tmp_path / "data")
+
+    assert path.name == "tg_ens_mean_0.25deg_reg_2011-2025_v33.0e.nc"
+    assert path.read_bytes() == b"netcdf" and again == path
+    assert not list((tmp_path / "data").glob("*.part"))
+    assert calls == [utils.EOBS_CHUNKS, base + path.name]
+    with pytest.raises(ValueError):
+        utils.download_eobs("xx", tmp_path / "data")

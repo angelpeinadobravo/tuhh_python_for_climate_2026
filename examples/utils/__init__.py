@@ -27,6 +27,7 @@ import requests
 
 EARTH_SURFACE = 510e6  # km2
 DWD_DAILY = "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/historical/"
+EOBS_CHUNKS = "https://surfobs.climate.copernicus.eu/dataaccess/access_eobs_chunks.php"
 
 
 def control_freak(factor=1):
@@ -101,4 +102,47 @@ def download_dwd_daily(station_id, folder="data"):
     folder.mkdir(parents=True, exist_ok=True)
     path = folder / names[0]
     path.write_bytes(data.content)
+    return path
+
+
+def download_eobs(variable, folder="data"):
+    """Download the newest 15-year file of an E-OBS variable (0.25 degree) once into `folder`; return it.
+
+    `variable` is the short name used by E-OBS: "tg" mean temperature, "tn" minimum, "tx" maximum,
+    "rr" precipitation, "pp" sea level pressure, "hu" humidity, "fg" wind speed, "qq" radiation.
+    The file name holds the version of E-OBS (e.g. tg_ens_mean_0.25deg_reg_2011-2025_v33.0e.nc),
+    so it is looked up in the links of the E-OBS download page.
+    The steps are explained in the notebook class03_get_gridded_data.
+    """
+    folder = pathlib.Path(folder)
+    start = f"{variable}_ens_mean_0.25deg_reg_"
+
+    # 1. downloaded before? then there is nothing to do
+    found = sorted(folder.glob(start + "*.nc"))
+    if found:
+        return found[-1]
+
+    # 2. the links of the download page, and the newest file of this variable among them
+    page = requests.get(EOBS_CHUNKS, timeout=60)
+    page.raise_for_status()
+    links = [
+        part
+        for part in page.text.split('"')
+        if part.split("/")[-1].startswith(start) and part.endswith(".nc")
+    ]
+    if not links:
+        raise ValueError(f"No E-OBS file of variable {variable!r} on {EOBS_CHUNKS}")
+    link = sorted(links)[-1]  # the periods sort in time: the last one is the newest
+
+    # 3. download it piece by piece (it is large), first under a temporary name, so that an
+    # interrupted download is never taken for a complete file
+    folder.mkdir(parents=True, exist_ok=True)
+    path = folder / link.split("/")[-1]
+    part_path = path.with_name(path.name + ".part")
+    with requests.get(link, stream=True, timeout=300) as data:
+        data.raise_for_status()
+        with open(part_path, "wb") as file:
+            for piece in data.iter_content(chunk_size=1024 * 1024):
+                file.write(piece)
+    part_path.rename(path)
     return path
