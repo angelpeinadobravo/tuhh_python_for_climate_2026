@@ -29,6 +29,9 @@ Classes
    * - 04
      - `Comparing datasets <slides/deck.html?md=class04_comparing_datasets.md>`_
      - :ref:`class_04`
+   * - 05
+     - `Getting to know HEALPix <slides/deck.html?md=class05_healpix.md>`_
+     - :ref:`class_05`
 
 The other :ref:`classes <classes>` get their deck together with their material.
 
