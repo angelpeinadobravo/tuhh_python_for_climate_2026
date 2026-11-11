@@ -154,3 +154,72 @@ def test_download_eobs_takes_newest_file_once(tmp_path, monkeypatch):
     assert calls == [utils.EOBS_CHUNKS, base + path.name]
     with pytest.raises(ValueError):
         utils.download_eobs("xx", tmp_path / "data")
+
+
+def test_download_frogs_finds_year_in_catalog(tmp_path, monkeypatch):
+    names = {
+        "ERA5": [
+            "pr_day_1x1_reanalysis_ERA5_20190101-20191231.nc",
+            "pr_day_1x1_reanalysis_ERA5_20200101-20201231.nc",
+        ],
+        "GPCC_FDD_v2022": [
+            "full_data_daily_v2022_10_2020.nc",
+            "full_data_daily_v2022_10_2021.nc",
+        ],
+    }
+    calls = []
+
+    class Response:
+        def __init__(self, text="", status_code=200):
+            self.text, self.status_code = text, status_code
+
+        def raise_for_status(self):
+            pass
+
+        def iter_content(self, chunk_size):
+            yield b"rain"
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            pass
+
+    def fake_get(url, timeout, stream=False):
+        calls.append(url)
+        for product, files in names.items():
+            if url.endswith(f"/FROGs/{product}/catalog.xml"):
+                return Response(
+                    "".join(f'<dataset urlPath="FROGs/{product}/{n}">' for n in files)
+                )
+        return Response(status_code=404) if url.endswith("catalog.xml") else Response()
+
+    monkeypatch.setattr(utils.requests, "get", fake_get)
+
+    era5 = utils.download_frogs("ERA5", 2020, tmp_path / "data")
+    gpcc = utils.download_frogs("GPCC_FDD_v2022", 2021, tmp_path / "data")
+    utils.download_frogs("ERA5", 2020, tmp_path / "data")
+
+    assert (
+        era5 == tmp_path / "data/ERA5/pr_day_1x1_reanalysis_ERA5_20200101-20201231.nc"
+    )
+    assert gpcc.name == "full_data_daily_v2022_10_2021.nc"  # not fooled by v2022
+    assert era5.read_bytes() == b"rain"
+    assert len(calls) == 4  # catalog + file, twice; nothing for the third call
+    with pytest.raises(ValueError):
+        utils.download_frogs("ERA5", 1950, tmp_path / "data")
+    with pytest.raises(ValueError):
+        utils.download_frogs("NOPE", 2020, tmp_path / "data")
+
+
+@pytest.mark.parametrize(
+    "template",
+    sorted((ROOT / "docs/source/classes").glob("*/template/my_page.rst")),
+    ids=lambda p: p.parts[-3],
+)
+def test_template_pictures_exist(template):
+    # Sphinx notices a student's new plot only if a picture of that name existed when the
+    # page was first built, so every figure of a template needs a picture in the template
+    for line in template.read_text().splitlines():
+        if line.startswith(".. figure::"):
+            assert (template.parent / line.split("::")[1].strip()).exists(), line

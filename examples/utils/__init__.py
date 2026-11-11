@@ -19,6 +19,7 @@ Helpers shared by the notebooks in examples/ (import with `from utils import ...
 """
 
 import pathlib
+import re
 
 import healpix as hp
 import matplotlib.pyplot as plt
@@ -28,6 +29,7 @@ import requests
 EARTH_SURFACE = 510e6  # km2
 DWD_DAILY = "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/historical/"
 EOBS_CHUNKS = "https://surfobs.climate.copernicus.eu/dataaccess/access_eobs_chunks.php"
+FROGS = "https://thredds-x.ipsl.fr/thredds/"
 
 
 def control_freak(factor=1):
@@ -105,6 +107,24 @@ def download_dwd_daily(station_id, folder="data"):
     return path
 
 
+def download_file(url, path):
+    """Download a large file from `url` piece by piece and save it as `path`; return `path`.
+
+    It is saved under a temporary name (".part") until it is complete, so that an interrupted
+    download is never taken for a complete file.
+    """
+    path = pathlib.Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    part_path = path.with_name(path.name + ".part")
+    with requests.get(url, stream=True, timeout=300) as data:
+        data.raise_for_status()
+        with open(part_path, "wb") as file:
+            for piece in data.iter_content(chunk_size=1024 * 1024):
+                file.write(piece)
+    part_path.rename(path)
+    return path
+
+
 def download_eobs(variable, folder="data"):
     """Download the newest 15-year file of an E-OBS variable (0.25 degree) once into `folder`; return it.
 
@@ -134,15 +154,43 @@ def download_eobs(variable, folder="data"):
         raise ValueError(f"No E-OBS file of variable {variable!r} on {EOBS_CHUNKS}")
     link = sorted(links)[-1]  # the periods sort in time: the last one is the newest
 
-    # 3. download it piece by piece (it is large), first under a temporary name, so that an
-    # interrupted download is never taken for a complete file
-    folder.mkdir(parents=True, exist_ok=True)
-    path = folder / link.split("/")[-1]
-    part_path = path.with_name(path.name + ".part")
-    with requests.get(link, stream=True, timeout=300) as data:
-        data.raise_for_status()
-        with open(part_path, "wb") as file:
-            for piece in data.iter_content(chunk_size=1024 * 1024):
-                file.write(piece)
-    part_path.rename(path)
-    return path
+    # 3. download it (see download_file)
+    return download_file(link, folder / link.split("/")[-1])
+
+
+def download_frogs(product, year, folder="data"):
+    """Download one year of daily precipitation of a FROGS product once into `folder`; return the file.
+
+    `product` is the name of a folder of the FROGS server, e.g. "GPCP_CDR_v1.3_yes_enforced",
+    "IMERG_V07B_FC" or "ERA5" (all of them: https://thredds-x.ipsl.fr/thredds/catalog/FROGs/catalog.html).
+    Every product has one file per year, on the same 1 degree grid; the year is the last number in
+    the file name (e.g. GPCP_CDR.1DD.2020.nc or pr_day_1x1_reanalysis_ERA5_20200101-20201231.nc).
+    The steps are explained in the notebook class04_get_frogs_data.
+    """
+    folder = pathlib.Path(folder) / product
+    is_year = lambda name: re.findall(r"\d+", name)[-1].startswith(str(year))
+
+    # 1. downloaded before? then there is nothing to do
+    found = [path for path in sorted(folder.glob("*.nc")) if is_year(path.name)]
+    if found:
+        return found[0]
+
+    # 2. the list of files of the product, and the file of this year in it
+    catalog = requests.get(f"{FROGS}catalog/FROGs/{product}/catalog.xml", timeout=60)
+    if catalog.status_code == 404:
+        raise ValueError(
+            f"No FROGS product {product!r} on {FROGS}catalog/FROGs/catalog.html"
+        )
+    catalog.raise_for_status()
+    names = [
+        part.split("/")[-1]
+        for part in catalog.text.split('"')
+        if part.startswith(f"FROGs/{product}/") and part.endswith(".nc")
+    ]
+    names = [name for name in names if is_year(name)]
+    if not names:
+        raise ValueError(f"No year {year} of FROGS product {product!r}")
+
+    # 3. download it (see download_file)
+    url = f"{FROGS}fileServer/FROGs/{product}/{names[0]}"
+    return download_file(url, folder / names[0])

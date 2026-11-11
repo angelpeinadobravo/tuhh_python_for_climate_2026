@@ -26,6 +26,9 @@ Classes
    * - 03
      - `Gridded data on a lon-lat grid <slides/deck.html?md=class03_gridded_data.md>`_
      - :ref:`class_03`
+   * - 04
+     - `Comparing datasets <slides/deck.html?md=class04_comparing_datasets.md>`_
+     - :ref:`class_04`
 
 The other :ref:`classes <classes>` get their deck together with their material.
 
