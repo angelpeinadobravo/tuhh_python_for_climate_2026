@@ -120,7 +120,7 @@ Saved next to your page: `region_exercise.png`, `point_exercise.png`
 ## For next class
 
 - Finish the exercise and your page
-- Next: **07 · Working with reanalysis**
+- Next: **07 · Machine learning for climate data**
 
 ---
 
