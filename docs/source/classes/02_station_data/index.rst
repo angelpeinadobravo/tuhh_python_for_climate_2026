@@ -24,4 +24,4 @@ Your analysis
 -------------
 
 From this class on, you fill a page of this webpage with your plots and analysis: an example page,
-``students/my_page.rst``, that you change into yours. It comes with the material of the class.
+``pages/02_station_data/my_page.rst`` in JupyterLab, that you change into yours. It comes with the material of the class.

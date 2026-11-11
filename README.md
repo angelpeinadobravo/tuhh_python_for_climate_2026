@@ -12,7 +12,7 @@ A plot `figure.png` is shown in light mode and, if it exists, `figure_dark.png` 
 |------------------|----------------------------------------------------------------------------|
 | `examples/`      | One notebook per class (`classNN_*`), the extras (`extra_*`), the figures they write (`Fig/`) and shared helpers (`utils/`) |
 | `slides/`        | One reveal.js deck per class, in Markdown, and `deck.html` that shows them  |
-| `docs/source/`   | The webpage: `classes/` (one page per class with the students' pages), `extras/`, `slides.rst`, `contribute/` |
+| `docs/source/`   | The webpage: `classes/` (one page per class, with the template of the students' page in `template/`), `extras/`, `slides.rst`, `contribute/` |
 | `tests/`         | pytest checks run by the CI                                                |
 
 ## Install

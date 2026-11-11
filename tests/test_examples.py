@@ -61,14 +61,19 @@ def test_student_pages_start_from_templates(tmp_path, monkeypatch):
     spec = importlib.util.spec_from_file_location("conf", ROOT / "docs/source/conf.py")
     conf = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(conf)
-    students = tmp_path / "docs/source/classes/01_setup/students"
-    students.mkdir(parents=True)
-    (students / "template_my_page.rst").write_text("template")
-    (students / "template_my_region.png").write_text("picture")
-    (students / "my_region.png").write_text("the student's own picture")
+    template = tmp_path / "docs/source/classes/01_setup/template"
+    template.mkdir(parents=True)
+    (template / "my_page.rst").write_text("template")
+    (template / "my_region.png").write_text("picture")
+    pages = tmp_path / "pages"
+    (pages / "01_setup").mkdir(parents=True)
+    (pages / "01_setup/my_region.png").write_text("the student's own picture")
     monkeypatch.setattr(conf, "ROOT", tmp_path)
+    monkeypatch.setattr(conf, "STUDENT_PAGES", pages)
 
-    conf._create_student_pages(None, None)
+    conf._student_pages(None, None)
 
-    assert (students / "my_page.rst").read_text() == "template"
-    assert (students / "my_region.png").read_text() == "the student's own picture"
+    assert (pages / "01_setup/my_page.rst").read_text() == "template"
+    assert (pages / "01_setup/my_region.png").read_text() == "the student's own picture"
+    copy = tmp_path / "docs/source/my_pages/01_setup"
+    assert (copy / "my_region.png").read_text() == "the student's own picture"

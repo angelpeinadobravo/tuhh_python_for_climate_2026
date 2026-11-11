@@ -4,7 +4,7 @@
 ================================================================================
 
 Slides: `01 · Setting up the workshop <../../slides/deck.html?md=class01_setup.md>`_
-· Notebook: ``examples/class01_first_steps.ipynb``
+· Notebook: ``notebooks/lessons/class01_first_steps.ipynb``
 
 In this class you install the workshop on your laptop, run your first Python code in JupyterLab, and
 add your own page to this webpage, with your name and a picture of a region of the world you are interested in.
@@ -70,23 +70,18 @@ Start Docker Desktop and check in a terminal (Windows: *PowerShell*, macOS: *Ter
 
 Open http://localhost:8888 and log in with your password.
 
-- **File browser** (left): the folder ``/app`` is the course; ``notebooks`` is your own folder.
-  Double-click to open a folder or a file; the arrow up icon **uploads** a file from your laptop.
+- **File browser** (left): your two folders, ``notebooks`` (the notebooks of the classes) and ``pages``
+  (your pages of this webpage). Double-click to open a folder or a file; the arrow up icon **uploads**
+  a file from your laptop.
 - **Launcher** (the ``+`` tab): start a new notebook, a **terminal** or a text file.
-- **Terminal**: type commands and press ``Enter``. You need it for a few commands in this workshop.
+- **Terminal**: type commands and press ``Enter``. You will hardly need it.
 - **Editor**: double-click a text file (e.g. ``.rst``) to edit it; save with ``Ctrl + S`` (``Cmd + S`` on macOS).
 
 4. Your first notebook
 ----------------------
 
-#. Open a terminal (*Launcher → Terminal*) and copy the notebooks of the course into your own folder,
-   so your work never mixes with the course files:
-
-   .. code-block:: console
-
-      $ cp -r /app/examples /app/notebooks/lessons
-
 #. In the file browser, open ``notebooks`` → ``lessons`` → ``class01_first_steps.ipynb``.
+   Every start of the workshop puts the notebooks of new classes there; yours are never overwritten.
 #. Read each cell and run it with ``Shift + Enter``, from top to bottom. Change the values and run again:
    you cannot break anything.
 #. Section 7 of the notebook draws your region on a globe and saves the picture for your page.
@@ -101,25 +96,26 @@ Pages are text files in the
 #. Make the picture of your region: change ``region_name``, ``lon`` and ``lat`` in section 7 of the
    notebook and run it. It saves the picture as ``my_region.png`` next to your page.
 
-   Prefer a picture of your own? In the file browser, open ``docs/source/classes/01_setup/students``,
-   **upload** it (arrow up icon), and write its file name in the ``.. figure::`` line of your page.
+   Prefer a picture of your own? In the file browser, open ``pages`` → ``01_setup``, **upload** it
+   (arrow up icon), and write its file name in the ``.. figure::`` line of your page.
 
-#. In the file browser, open ``docs/source/classes/01_setup/students/my_page.rst``. Replace the example
-   title, name, region and text with yours, and save with ``Ctrl + S``.
+#. In the file browser, open ``pages`` → ``01_setup`` → ``my_page.rst``. Replace the example title,
+   name, region and text with yours, and save with ``Ctrl + S``.
 #. Open http://localhost:8000/classes/01_setup/ (*Classes → 01*). A few seconds after you save, your page
    shows your title in the list below. If it does not, the terminal of ``docker compose up`` shows the
    error with the line number.
 #. Open your page, print it (``Ctrl + P`` / ``Cmd + P``), choose **Save as PDF**, and send the PDF to the tutor.
 
-Your page and picture stay on your laptop. Deleted ``my_page.rst`` by mistake? The next save of any page
-brings back the example.
+Your page and picture stay on your laptop, in ``my_pages/``. Deleted ``my_page.rst`` by mistake? The next
+save of any page brings back the example.
 
 6. Stop and start again
 -----------------------
 
 Press ``Ctrl + C`` in the terminal of ``docker compose up``, or run ``docker compose down`` in the
-workshop folder. Your work stays in the workshop folder on your laptop: the course and your page in
-``course/``, your notebooks in ``my_notebooks/``. Next time, start with ``docker compose up``.
+workshop folder. Your work stays in the workshop folder on your laptop: your notebooks in ``my_notebooks/``
+and your pages in ``my_pages/``. ``course/`` is the course itself, updated on every start; you do not need
+to open it. Next time, start with ``docker compose up``.
 
 Something does not work? See :doc:`../../contribute/intro/getstart` and the *Problems?* table of the
 ``README.md`` in the workshop folder.
@@ -130,4 +126,4 @@ Your page
 .. toctree::
    :maxdepth: 1
 
-   students/my_page
+   /my_pages/01_setup/my_page
