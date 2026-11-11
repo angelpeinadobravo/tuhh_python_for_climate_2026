@@ -1,0 +1,25 @@
+services:
+  jupyter:
+    build: .
+    ports:
+      # 127.0.0.1: reachable only from this laptop, not from the network
+      - "127.0.0.1:8888:8888"  # JupyterLab
+      - "127.0.0.1:8000:8000"  # webpage and slides
+    volumes:
+      # all work lives on the laptop and survives stopping the container
+      - ./course:/course  # the course, updated on every start; students do not edit it
+      - ./my_notebooks:/app/notebooks
+      - ./my_pages:/app/pages
+    working_dir: /app
+    # Linux: files written by the container belong to this user (set UID/GID in .env)
+    user: "${UID:-1000}:${GID:-1000}"
+    environment:
+      # Set your fixed password here
+      - JUPYTER_TOKEN=${JUPYTER_PASSWORD}
+      - REPO_URL=${REPO_URL:-https://github.com/angelpeinadobravo/tuhh_python_for_climate_2026.git}
+      # where the webpage finds the students' pages (docs/source/conf.py)
+      - STUDENT_PAGES=/app/pages
+      # the user above has no home directory in the image
+      - HOME=/tmp
+      # file events do not always cross the laptop-container boundary (Windows)
+      - WATCHFILES_FORCE_POLLING=true
