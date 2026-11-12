@@ -13,15 +13,15 @@ exercise, and from class 02 on a page where you add your plots and analysis.
    * - Class
      - Topic
    * - 01
-     - :doc:`Setting up the workshop <01_setup/index>`
+     - :doc:`Setting up the Docker <01_setup/index>`
    * - 02
      - :doc:`Station data and time series <02_station_data/index>`
    * - 03
-     - :doc:`Gridded data on a lon-lat grid <03_gridded_data/index>`
+     - :doc:`Climate data - lon-lat grid, when been square is fine <03_gridded_data/index>`
    * - 04
-     - :doc:`Comparing datasets <04_comparing_datasets/index>`
+     - :doc:`Comparing datasets - Uncertanity <04_comparing_datasets/index>`
    * - 05
-     - :doc:`Getting to know HEALPix <05_healpix/index>`
+     - :doc:`Climate data - Getting to know HEALPix <05_healpix/index>`
    * - 06
      - :doc:`Working with zoom levels <06_zoom_levels/index>`
    * - 07

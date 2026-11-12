@@ -1,4 +1,4 @@
-# 03 · Gridded data on a lon-lat grid
+# 03 · Climate data - lon-lat grid, when been square is fine
 
 Python for Climate Science · TUHH
 

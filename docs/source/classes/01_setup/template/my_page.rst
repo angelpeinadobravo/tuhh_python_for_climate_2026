@@ -1,12 +1,12 @@
 .. Lines that start with ".." and a space, like these, are comments: they do not appear on the page.
    This is your page: replace the example text with yours and save. It stays on your laptop.
 
-Example Student · Hamburg
+1 - First entry to Python
 =========================
 
 .. The line of "=" under the title must be at least as long as the title.
 
-:Name: Example Student
+:Name: Student
 :Region: Hamburg, Germany (10.0° E, 53.55° N)
 
 Why this region?

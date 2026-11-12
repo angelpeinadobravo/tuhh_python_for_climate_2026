@@ -2,8 +2,8 @@
    This is your page of class 05: replace the example text with yours and save.
    The notebook class05_evaluate_models saves your plots next to this page.
 
-Example Student · Hamburg
-=========================
+Climate data - Getting to know HEALPix
+======================================
 
 :Name: Example Student
 

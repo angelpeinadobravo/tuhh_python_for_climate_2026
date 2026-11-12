@@ -2,10 +2,10 @@
    This is your page of class 03: replace the example text with yours and save.
    The notebook class03_use_gridded_data saves your plots next to this page.
 
-Example Student · Hamburg
-=========================
+Climate data in NetCDF - lon-lat grid
+=====================================
 
-:Name: Example Student
+:Name: Student
 
 Temperature of Europe
 ---------------------

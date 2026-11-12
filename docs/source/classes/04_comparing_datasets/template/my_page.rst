@@ -2,10 +2,10 @@
    This is your page of class 04: replace the example text with yours and save.
    The notebook class04_compare_datasets saves your plots next to this page.
 
-Example Student · Hamburg
-=========================
+Comparing datasets - Uncertanity
+================================
 
-:Name: Example Student
+:Name: Student
 
 Two estimates of the precipitation of 2020
 ------------------------------------------
