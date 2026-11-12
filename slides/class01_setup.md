@@ -1,4 +1,4 @@
-# 01 · Setting up the workshop
+# 01 · Setting up Docker
 
 Python for Climate Science · TUHH
 
@@ -8,16 +8,16 @@ Python for Climate Science · TUHH
 
 ## Today
 
-1. Install **Docker** and start the workshop
+1. Install **Docker** and start the fun
 2. Find your way in **JupyterLab**
 3. Your first **notebook** and your first lines of **Python**
-4. Your own **page** on the workshop webpage: your name and your region of the world
+4. Your own **page** on the webpage: your name and your region of the world
 
 Note: Everything on these slides is also on the class page, step by step, to revisit after the class.
 
 ---
 
-## The workshop on your laptop
+## Docker on your laptop
 
 | What | Where |
 |---|---|
@@ -48,9 +48,9 @@ Note: Links to the installers are on the class page. On Windows the terminal is 
 
 ---
 
-## 2 · Start the workshop
+## 2 · Start the Docker
 
-In the unzipped workshop folder:
+In the unzipped class folder from the git repostory or zip:
 
 ```bash
 cp .env.example .env          # Windows: Copy-Item .env.example .env

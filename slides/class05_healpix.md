@@ -1,4 +1,4 @@
-# 05 · Getting to know HEALPix
+# 05 · Climate data - Getting to know HEALPix
 
 Python for Climate Science · TUHH
 
