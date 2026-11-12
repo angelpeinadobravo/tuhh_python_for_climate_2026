@@ -2,10 +2,10 @@
    This is your page of class 06: replace the example text with yours and save.
    The notebook class06_zoom_levels saves your plots next to this page.
 
-Example Student · Hamburg
+Working with zoom levels
 =========================
 
-:Name: Example Student
+:Name: Student
 
 Maps at different zoom levels
 -----------------------------

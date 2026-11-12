@@ -42,7 +42,9 @@ of last year. In this class:
 All stations are in the `list of stations
 <https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/historical/KL_Tageswerte_Beschreibung_Stationen.txt>`_.
 The file of a station is a zip file with the measurements (``produkt_klima_tag_...txt``) and descriptions
-of the station (*Metadaten*). The measurements look like this, one line per day:
+of the station (*Metadaten*). *When you get a new dataset, always look into the data structure!*.
+
+The measurements look like this, one line per day:
 
 .. code-block:: text
 

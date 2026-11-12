@@ -18,19 +18,19 @@ Classes
      - Slides
      - Page
    * - 01
-     - `Setting up the workshop <slides/deck.html?md=class01_setup.md>`_
+     - `Setting up Docker <slides/deck.html?md=class01_setup.md>`_
      - :ref:`class_01`
    * - 02
      - `Station data and time series <slides/deck.html?md=class02_station_data.md>`_
      - :ref:`class_02`
    * - 03
-     - `Gridded data on a lon-lat grid <slides/deck.html?md=class03_gridded_data.md>`_
+     - `Climate data - lon-lat grid, when been square is fine <slides/deck.html?md=class03_gridded_data.md>`_
      - :ref:`class_03`
    * - 04
-     - `Comparing datasets <slides/deck.html?md=class04_comparing_datasets.md>`_
+     - `Comparing datasets - Uncertanity <slides/deck.html?md=class04_comparing_datasets.md>`_
      - :ref:`class_04`
    * - 05
-     - `Getting to know HEALPix <slides/deck.html?md=class05_healpix.md>`_
+     - `Climate data - Getting to know HEALPix <slides/deck.html?md=class05_healpix.md>`_
      - :ref:`class_05`
    * - 06
      - `Working with zoom levels <slides/deck.html?md=class06_zoom_levels.md>`_

@@ -2,10 +2,10 @@
    This is your page of class 02: replace the example text with yours and save.
    The notebook of class 02 saves your plots next to this page.
 
-Example Student · Hamburg
+2 - Station Data Exercise
 =========================
 
-:Name: Example Student
+:Name: Student
 
 Temperature in Hamburg
 ----------------------

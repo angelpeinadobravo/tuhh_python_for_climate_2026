@@ -1,18 +1,18 @@
 .. _class_01:
 
-01 · Setting up the workshop
+01 · Setting up the Docker container
 ================================================================================
 
-Slides: `01 · Setting up the workshop <../../slides/deck.html?md=class01_setup.md>`_
+Slides: `01 · Setting up the Docker container <../../slides/deck.html?md=class01_setup.md>`_
 · Notebook: ``notebooks/lessons/class01_first_steps.ipynb``
 
-In this class you install the workshop on your laptop, run your first Python code in JupyterLab, and
-add your own page to this webpage, with your name and a picture of a region of the world you are interested in.
+In this class you create a docker image on your laptop, run your first Python code in JupyterLab, and
+add your own page to this webpage.
 
 What you learn
 --------------
 
-- What Docker is for and how to start the workshop container.
+- What Docker is for and how to start the container.
 - How to find your way in JupyterLab: files, notebooks, terminal and text editor.
 - The basics of a notebook and of Python: cells, variables, lists, functions, packages and a plot.
 - How to write a page of this webpage, add a picture, and save it as PDF.
@@ -20,7 +20,7 @@ What you learn
 1. Install Docker
 -----------------
 
-Docker runs the workshop in a *container*: a small computer inside your laptop that has Python and all
+Docker runs a *container*: a small computer inside your laptop that has Python and all
 the packages already installed, the same for everybody. You install Docker once:
 
 .. list-table::
@@ -42,11 +42,12 @@ Start Docker Desktop and check in a terminal (Windows: *PowerShell*, macOS: *Ter
 
    $ docker compose version
 
-2. Start the workshop
----------------------
+2. Deploy the container
+-----------------------
 
-#. Unzip the workshop file from the tutor and open a terminal **in that folder** (the one with
-   ``docker-compose.yml``).
+#. Unzip the file provided and open a terminal **in that folder** (the one with ``docker-compose.yml``).
+#. Or go to the `repositor <https://github.com/angelpeinadobravo/tuhh_python_for_climate_2026>`__ and download
+#. the dirctory ``workshop`` in your laptop.
 #. Create your settings file ``.env`` from the example (Windows PowerShell: ``Copy-Item .env.example .env``):
 
    .. code-block:: console
@@ -55,7 +56,7 @@ Start Docker Desktop and check in a terminal (Windows: *PowerShell*, macOS: *Ter
 
    Open ``.env`` in a text editor and replace ``change-me`` with a password of your choice.
    On Linux, also run ``echo "UID=$(id -u)" >> .env && echo "GID=$(id -g)" >> .env``.
-#. Start the workshop. The first time takes 10–15 minutes, because Docker downloads all packages:
+#. Start the docker. The first time takes 10–15 minutes, because Docker downloads all packages:
 
    .. code-block:: console
 
@@ -81,7 +82,7 @@ Open http://localhost:8888 and log in with your password.
 ----------------------
 
 #. In the file browser, open ``notebooks`` → ``lessons`` → ``class01_first_steps.ipynb``.
-   Every start of the workshop puts the notebooks of new classes there; yours are never overwritten.
+   Every start of the docker puts the notebooks of new classes there; yours are never overwritten.
 #. Read each cell and run it with ``Shift + Enter``, from top to bottom. Change the values and run again:
    you cannot break anything.
 #. Section 7 of the notebook draws your region on a globe and saves the picture for your page.

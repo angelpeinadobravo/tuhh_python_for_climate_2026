@@ -1,6 +1,6 @@
 .. _class_05:
 
-05 · Getting to know HEALPix
+05 · Climate data - Getting to know HEALPix
 ================================================================================
 
 Slides: `05 · Getting to know HEALPix <../../slides/deck.html?md=class05_healpix.md>`_

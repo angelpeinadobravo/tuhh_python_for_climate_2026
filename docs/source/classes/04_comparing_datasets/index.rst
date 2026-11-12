@@ -1,6 +1,6 @@
 .. _class_04:
 
-04 · Comparing datasets
+04 · Comparing datasets - Uncertanity
 ================================================================================
 
 Slides: `04 · Comparing datasets <../../slides/deck.html?md=class04_comparing_datasets.md>`_

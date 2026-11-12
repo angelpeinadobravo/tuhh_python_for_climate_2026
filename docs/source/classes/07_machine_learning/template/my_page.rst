@@ -2,10 +2,10 @@
    This is your page of class 07: replace the example text with yours and save.
    The notebooks of class 07 save your plots next to this page.
 
-Example Student · Hamburg
-=========================
+Machine learning for climate data
+=================================
 
-:Name: Example Student
+:Name: Student
 
 A first model
 -------------

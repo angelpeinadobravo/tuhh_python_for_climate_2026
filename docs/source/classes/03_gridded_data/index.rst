@@ -1,9 +1,9 @@
 .. _class_03:
 
-03 · Gridded data on a lon-lat grid
+03 · Climate data - lon-lat grid, when been square is fine
 ================================================================================
 
-Slides: `03 · Gridded data on a lon-lat grid <../../slides/deck.html?md=class03_gridded_data.md>`_
+Slides: `03 · Climate data in NetCDF - lon-lat grid <../../slides/deck.html?md=class03_gridded_data.md>`_
 · Notebooks: ``notebooks/lessons/class03_get_gridded_data.ipynb`` and ``class03_use_gridded_data.ipynb``
 
 In class 02 a station gave you the weather at one place. In this class you use **gridded data**, values on
