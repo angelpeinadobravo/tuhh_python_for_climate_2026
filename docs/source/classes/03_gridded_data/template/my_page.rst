@@ -36,12 +36,12 @@ Precipitation of Europe
 .. figure:: precipitation_month.png
    :width: 80%
 
-   Precipitation of one month (E-OBS).
+   Precipitation of September 2014 (E-OBS).
 
 .. figure:: precipitation_year.png
    :width: 80%
 
-   Precipitation of one year (E-OBS).
+   Precipitation of 2021 (E-OBS).
 
 .. figure:: precipitation_europe.png
    :width: 100%
